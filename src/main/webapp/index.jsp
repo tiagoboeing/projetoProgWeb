@@ -35,6 +35,8 @@
 	<%@ include file="pages/parts/menu.xhtml" %>
 	
 	<!-- conteúdo -->
+	<% String url = request.getRequestURI(); %>
+
 	<%@ include file="pages/dashboard.xhtml" %>
 
 
