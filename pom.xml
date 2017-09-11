@@ -38,20 +38,14 @@
 
 	<!-- DEPENDÊNCIAS -->
 	<dependencies>
-	
-		<!-- Rewrite Servlet - url amigável -->
+
+		<!-- Pretty Faces - url amigável -->
 		<dependency>
 			<groupId>org.ocpsoft.rewrite</groupId>
 			<artifactId>rewrite-servlet</artifactId>
 			<version>3.4.1.Final</version>
 		</dependency>
-		
-		<!-- Pretty Faces - url amigável -->
-		<dependency>
-			<groupId>org.ocpsoft.rewrite</groupId>
-			<artifactId>rewrite-config-prettyfaces</artifactId>
-			<version>3.4.1.Final</version>
-		</dependency>
+
 
 		<!-- HIBERNATE -->
 		<dependency>
