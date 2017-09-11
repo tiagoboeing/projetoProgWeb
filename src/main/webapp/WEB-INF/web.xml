@@ -11,6 +11,12 @@
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>
+	
+	<!-- primefaces tema inspirado no bootstrap -->
+	<context-param>
+	  <param-name>primefaces.THEME</param-name>
+	  <param-value>bootstrap</param-value>
+	</context-param>
 
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
@@ -22,6 +28,12 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
+	
+	<!--  INFORMA TOMCAT OS ARQUIVOS INDEX -->
+	<welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
+    </welcome-file-list>
 
 </web-app>
 
