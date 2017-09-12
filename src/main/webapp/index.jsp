@@ -42,8 +42,7 @@
 	<%@ include file="pages/parts/header.xhtml" %>
 
 	<!-- conteúdo -->
-		<%@ include file="pages/paginas.jsp" %>
-	</div>
+	<%@ include file="pages/paginas.jsp" %>
 
 	<!-- Bibliotecas Bootstrap -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
