@@ -17,6 +17,12 @@ String pagina = request.getParameter("page");
 		case "clientes":
 			%><%@ include file="../pages/clientes.xhtml" %><%
 			break;
+			
+		// CLIENTES	
+		case "estados":
+			%><%@ include file="../pages/estados.xhtml" %><%
+			break;
+			
 		
 		default:
 			%><%@ include file="../pages/dashboard.xhtml" %><%

@@ -3,23 +3,29 @@
 	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
 
-	
+
 	<!-- DASHBOARD -->
 	<url-mapping id="home">
-        <pattern value="/" />
-        <view-id value="index.jsp?page=dashboard" />
-    </url-mapping>
-	
+		<pattern value="/" />
+		<view-id value="index.jsp?page=dashboard" />
+	</url-mapping>
+
 	<!-- DASHBOARD -->
 	<url-mapping id="dashboard">
-        <pattern value="/dashboard" />
-        <view-id value="index.jsp?page=dashboard" />
-    </url-mapping>
-    
-    <!-- CLIENTES -->
-    <url-mapping id="clientes">
-        <pattern value="/clientes" />
-        <view-id value="index.jsp?page=clientes" />
-    </url-mapping>
+		<pattern value="/dashboard" />
+		<view-id value="index.jsp?page=dashboard" />
+	</url-mapping>
+
+	<!-- CLIENTES -->
+	<url-mapping id="clientes">
+		<pattern value="/clientes" />
+		<view-id value="index.jsp?page=clientes" />
+	</url-mapping>
+
+	<!-- Estados -->
+	<url-mapping id="estados">
+		<pattern value="/estados" />
+		<view-id value="index.jsp?page=estados" />
+	</url-mapping>
 
 </pretty-config>
