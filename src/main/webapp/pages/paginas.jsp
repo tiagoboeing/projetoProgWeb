@@ -1,23 +1,21 @@
 <%
 
-String url = request.getRequestURI(); 
-String dados[] = url.split("/");
+/* String url = request.getRequestURI(); 
+String dados[] = url.split("/"); */
 
-
-if(dados.length > 1){
+String pagina = request.getParameter("page");
 		
-	switch(dados[2]){
+	switch(pagina){
 	
-		case "index.jsp":
+		case "dashboard":
 			%><%@ include file="../pages/dashboard.xhtml" %><%
 			break;
 			
-		case "index.jsp?p=clientes":
-			out.print("../pages/clientes.xhtml");
+		case "clientes":
+			%><%@ include file="../pages/clientes.xhtml" %><%
 			break;
 		
 	
 	}
 	
-}
 %>

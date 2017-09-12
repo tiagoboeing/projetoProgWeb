@@ -39,7 +39,7 @@
 <h:body>
 
 	<!-- TOPO DA PÁGINA -->
-	<%@ include file="pages/parts/menu.xhtml"%>
+	<%@ include file="pages/parts/menu.xhtml" %>
 
 	<!-- conteúdo -->
 	<div class="container">

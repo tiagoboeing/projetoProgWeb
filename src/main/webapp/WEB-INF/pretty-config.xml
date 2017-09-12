@@ -3,13 +3,17 @@
 	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
 
-	<!-- <rewrite match="^/old-url/(\w+)/$" substitute="/new_url/$1/"
-		redirect="301" /> -->
-
-
-	<!-- <url-mapping id="dashboard">
-		<pattern value="/dashboard" />
-		<view-id value="../dashboard.xhtml" />
-	</url-mapping> -->
+	
+	<!-- DASHBOARD -->
+	<url-mapping id="dashboard">
+        <pattern value="/dashboard" />
+        <view-id value="index.jsp?page=dashboard" />
+    </url-mapping>
+    
+    <!-- CLIENTES -->
+    <url-mapping id="clientes">
+        <pattern value="/clientes" />
+        <view-id value="index.jsp?page=clientes" />
+    </url-mapping>
 
 </pretty-config>
