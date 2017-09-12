@@ -1,69 +1,67 @@
-<div class="container"  xmlns:p="http://primefaces.org/ui"
-                        xmlns:h="http://java.sun.com/jsf/html"
-                        xmlns:f="http://java.sun.com/jsf/core">
+<div class="container">
 
-	<p:growl id="msg" />
-	<h:form id="frmTabela">
-		<p:panel header="Estados - Listagem">
-			<p:dataTable emptyMessage="Sem registros" paginator="true"
-				value="#{estadoBack.estados}" id="tbl" var="estado" rows="4"
-				paginatorPosition="bottom">
-				<f:facet name="header">
-					<p:commandButton value="Novo" oncomplete="PF('dlg').show();" />
-				</f:facet>
-				<p:column headerText="Estado" sortBy="#{estado.nome}"
-					filterBy="#{estado.nome}">
-					<h:outputText value="#{estado.nome}" />
-				</p:column>
-				<p:column headerText="Sigla" sortBy="#{estado.uf}"
-					filterBy="#{estado.uf}">
-					<h:outputText value="#{estado.uf}" />
-				</p:column>
-				<p:column headerText="Opções">
-					<p:commandButton icon="ui-icon-trash"
-						actionListener="#{estadoBack.excluir}" update="frmTabela:tbl msg">
-						<p:confirm header="Confirmação" message="Excluir UF?"
-							icon="ui-icon-alert" />
-						<f:attribute name="ufExcluir" value="#{estado}" />
-					</p:commandButton>
-					<p:commandButton icon="ui-icon-pencil"
-						oncomplete="PF('dlg').show();" update="frmCad:pnlCad"
-						actionListener="#{estadoBack.edita}">
-						<f:attribute name="ufAlterar" value="#{estado}" />
-					</p:commandButton>
-				</p:column>
-			</p:dataTable>
+<!-- 	<p:growl id="msg" /> -->
+<!-- 	<h:form id="frmTabela"> -->
+<!-- 		<p:panel header="Estados - Listagem"> -->
+<!-- 			<p:dataTable emptyMessage="Sem registros" paginator="true" -->
+<!-- 				value="#{estadoBack.estados}" id="tbl" var="estado" rows="4" -->
+<!-- 				paginatorPosition="bottom"> -->
+<!-- 				<f:facet name="header"> -->
+<!-- 					<p:commandButton value="Novo" oncomplete="PF('dlg').show();" /> -->
+<!-- 				</f:facet> -->
+<!-- 				<p:column headerText="Estado" sortBy="#{estado.nome}" -->
+<!-- 					filterBy="#{estado.nome}"> -->
+<!-- 					<h:outputText value="#{estado.nome}" /> -->
+<!-- 				</p:column> -->
+<!-- 				<p:column headerText="Sigla" sortBy="#{estado.uf}" -->
+<!-- 					filterBy="#{estado.uf}"> -->
+<!-- 					<h:outputText value="#{estado.uf}" /> -->
+<!-- 				</p:column> -->
+<!-- 				<p:column headerText="Opções"> -->
+<!-- 					<p:commandButton icon="ui-icon-trash" -->
+<!-- 						actionListener="#{estadoBack.excluir}" update="frmTabela:tbl msg"> -->
+<!-- 						<p:confirm header="Confirmação" message="Excluir UF?" -->
+<!-- 							icon="ui-icon-alert" /> -->
+<!-- 						<f:attribute name="ufExcluir" value="#{estado}" /> -->
+<!-- 					</p:commandButton> -->
+<!-- 					<p:commandButton icon="ui-icon-pencil" -->
+<!-- 						oncomplete="PF('dlg').show();" update="frmCad:pnlCad" -->
+<!-- 						actionListener="#{estadoBack.edita}"> -->
+<!-- 						<f:attribute name="ufAlterar" value="#{estado}" /> -->
+<!-- 					</p:commandButton> -->
+<!-- 				</p:column> -->
+<!-- 			</p:dataTable> -->
 
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-	        	<p:commandButton value="Sim" type="button"
-					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-	        	<p:commandButton value="Não" type="button"
-					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-    		</p:confirmDialog>
-		</p:panel>
-	</h:form>
+<!-- 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"> -->
+<!-- 	        	<p:commandButton value="Sim" type="button" -->
+<!-- 					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" /> -->
+<!-- 	        	<p:commandButton value="Não" type="button" -->
+<!-- 					styleClass="ui-confirmdialog-no" icon="ui-icon-close" /> -->
+<!--     		</p:confirmDialog> -->
+<!-- 		</p:panel> -->
+<!-- 	</h:form> -->
 
-	<p:dialog header="Estados - Cadastro" widgetVar="dlg" resizable="false"
-		draggable="false" modal="true" closable="false">
-		<h:form id="frmCad">
-			<h:panelGrid columns="2" id="pnlCad">
-				<p:outputLabel value="Nome:" for="txtNome" />
-				<p:inputText id="txtNome" maxlength="20" size="30"
-					value="#{estadoBack.estado.nome}" required="true"
-					requiredMessage="Nome obrigatório" />
-				<p:outputLabel value="Sigla:" for="txtUf" />
-				<p:inputText id="txtUf" maxlength="2" size="10"
-					value="#{estadoBack.estado.uf}" required="true"
-					requiredMessage="Sigla obrigatório"
-					validatorMessage="Sigla : obrigatório 2 caracteres">
-					<f:validateLength minimum="2" maximum="2" />
-				</p:inputText>
-			</h:panelGrid>
-			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar"
-					actionListener="#{estadoBack.cadastra}"
-					update="frmCad:pnlCad msg frmTabela:tbl" />
-				<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();" />
-			</h:panelGrid>
-		</h:form>
+<!-- 	<p:dialog header="Estados - Cadastro" widgetVar="dlg" resizable="false" -->
+<!-- 		draggable="false" modal="true" closable="false"> -->
+<!-- 		<h:form id="frmCad"> -->
+<!-- 			<h:panelGrid columns="2" id="pnlCad"> -->
+<!-- 				<p:outputLabel value="Nome:" for="txtNome" /> -->
+<!-- 				<p:inputText id="txtNome" maxlength="20" size="30" -->
+<!-- 					value="#{estadoBack.estado.nome}" required="true" -->
+<!-- 					requiredMessage="Nome obrigatório" /> -->
+<!-- 				<p:outputLabel value="Sigla:" for="txtUf" /> -->
+<!-- 				<p:inputText id="txtUf" maxlength="2" size="10" -->
+<!-- 					value="#{estadoBack.estado.uf}" required="true" -->
+<!-- 					requiredMessage="Sigla obrigatório" -->
+<!-- 					validatorMessage="Sigla : obrigatório 2 caracteres"> -->
+<!-- 					<f:validateLength minimum="2" maximum="2" /> -->
+<!-- 				</p:inputText> -->
+<!-- 			</h:panelGrid> -->
+<!-- 			<h:panelGrid columns="2"> -->
+<!-- 				<p:commandButton value="Salvar" -->
+<!-- 					actionListener="#{estadoBack.cadastra}" -->
+<!-- 					update="frmCad:pnlCad msg frmTabela:tbl" /> -->
+<!-- 				<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();" /> -->
+<!-- 			</h:panelGrid> -->
+<!-- 		</h:form> -->
 </div>
