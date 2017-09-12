@@ -5,6 +5,12 @@
 
 	
 	<!-- DASHBOARD -->
+	<url-mapping id="home">
+        <pattern value="/" />
+        <view-id value="index.jsp?page=dashboard" />
+    </url-mapping>
+	
+	<!-- DASHBOARD -->
 	<url-mapping id="dashboard">
         <pattern value="/dashboard" />
         <view-id value="index.jsp?page=dashboard" />

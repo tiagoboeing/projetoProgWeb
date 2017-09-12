@@ -39,10 +39,9 @@
 <h:body>
 
 	<!-- TOPO DA PÁGINA -->
-	<%@ include file="pages/parts/menu.xhtml" %>
+	<%@ include file="pages/parts/header.xhtml" %>
 
 	<!-- conteúdo -->
-	<div class="container">
 		<%@ include file="pages/paginas.jsp" %>
 	</div>
 
