@@ -4,17 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 
 @SuppressWarnings("serial")
 @Entity
-public class Estado implements Serializable {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long codigo;
+public class Estado extends Entidade implements Serializable {
 
 	@Column(length = 100)
 	private String nome;
@@ -22,11 +16,11 @@ public class Estado implements Serializable {
 	@Column(length = 2)
 	private String uf;
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		int result = super.hashCode();
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((uf == null) ? 0 : uf.hashCode());
 		return result;
@@ -36,16 +30,11 @@ public class Estado implements Serializable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Estado other = (Estado) obj;
-		if (codigo == null) {
-			if (other.codigo != null)
-				return false;
-		} else if (!codigo.equals(other.codigo))
-			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
@@ -57,14 +46,6 @@ public class Estado implements Serializable {
 		} else if (!uf.equals(other.uf))
 			return false;
 		return true;
-	}
-
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getNome() {

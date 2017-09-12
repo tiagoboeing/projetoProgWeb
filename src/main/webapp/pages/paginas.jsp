@@ -1,32 +1,17 @@
 <%
 
-/* String url = request.getRequestURI(); 
-String dados[] = url.split("/"); */
-
 String pagina = request.getParameter("page");
-		
 	
 	switch(pagina){
 
 		// DASHBOARD
 		case "dashboard":
-			%><%@ include file="../pages/dashboard.xhtml" %><%
+			%><%@ include file="dashboard.xhtml" %><%
 			break;
 			
-		// CLIENTES	
-		case "clientes":
-			%><%@ include file="../pages/clientes.xhtml" %><%
-			break;
 			
-		// CLIENTES	
-		case "estados":
-			%><%@ include file="../pages/estados.xhtml" %><%
-			break;
-			
-		
 		default:
-			%><%@ include file="../pages/dashboard.xhtml" %><%
-				
+			%><%@ include file="dashboard.xhtml" %><%	
 	
 	}
 	
