@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastro de produtos</title>
+</h:head>
+
+<h:body>
+
+
+	<div class="container">
+
+		<h1>Produtos</h1>
+
+
+		<!-- PAINEL DE LISTAGEM -->
+		<p:growl id="msg" />
+		<h:form id="formProduto">
+
+			<p:panel>
+
+				<p:dataTable emptyMessage="Sem registros" paginator="true"
+					value="#{produtoBack.listaProdutos}" id="tbl" var="produto"
+					rows="100" paginatorPosition="bottom">
+
+					<f:facet name="header">
+						<p:commandButton value="Novo" oncomplete="PF('dlg').show();" />
+					</f:facet>
+
+					<p:column headerText="Descrição"
+						sortBy="#{produto.pro_nome}"
+						filterBy="#{produto.pro_nome}">
+						<h:outputText value="#{produto.pro_nome}" />
+					</p:column>
+
+					<p:column headerText="Valor"
+						sortBy="#{produto.pro_valor}"
+						filterBy="#{produto.pro_valor}">
+						<h:outputText
+							value="#{produto.pro_valor}" />
+					</p:column>
+
+					<p:column headerText="Opções">
+
+						<!-- EXCLUIR -->
+						<p:commandButton icon="ui-icon-trash"
+							actionListener="#{produtoBack.exclui}"
+							update="formProduto:tbl msg">
+
+							<p:confirm header="Confirmação" message="Excluir produto?"
+								icon="ui-icon-alert" />
+							<f:attribute name="idExcluir" value="#{produto}" />
+						</p:commandButton>
+
+
+						<!-- EDITAR -->
+						<p:commandButton icon="ui-icon-pencil"
+							oncomplete="PF('dlg').show();" update="formCadastro:pnlCad"
+							actionListener="#{produtoBack.edita}">
+							<f:attribute name="idAlterar" value="#{produto}" />
+						</p:commandButton>
+
+					</p:column>
+
+				</p:dataTable>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		        	<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		        	<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    			</p:confirmDialog>
+			</p:panel>
+
+		</h:form>
+		<!-- FECHA PAINEL DE LISTAGEM -->
+
+
+
+		<!-- CADASTRO DE PRODUTO -->
+		<p:dialog header="Cadastro de Produto" widgetVar="dlg"
+			resizable="false" draggable="false" modal="true" closable="true"
+			width="80%">
+
+			<h:form id="formCadastro">
+
+				<h:panelGrid id="pnlCad">
+
+					<!-- LAYOUT DA TELA DE CADASTRO -->
+					<!-- <p:layout style="min-width:400px;min-height:200px;">
+						<p:layoutUnit position="west" resizable="true" size="100"
+							minSize="40" maxSize="200">
+							        West
+							    </p:layoutUnit>
+
+						<p:layoutUnit position="center">
+							        Center
+							    </p:layoutUnit>
+					</p:layout> -->
+
+					<div class="ui-g-12 ui-md-3 ui-lg-3">
+
+						<!-- <p:outputLabel for="tipoConta" value="Tipo de conta:" />
+
+							<p:selectOneRadio id="tipoConta" value="" layout="responsive" columns="1">
+								<f:selectItem itemLabel="Pessoa física" itemValue="F" />
+								<f:selectItem itemLabel="Pessoa jurídica" itemValue="J" />
+							</p:selectOneRadio> -->
+
+					</div>
+
+					<div class="ui-g-12 ui-md-9 ui-lg-9">
+
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Nome:" for="txtNome" />
+							<p:inputText id="txtNome" maxlength="50" size="30"
+								value="#{produtoBack.p.pro_nome}" required="true"
+								requiredMessage="Descrição obrigatória" />
+
+						</h:panelGrid>
+
+					</div>
+
+					<!-- FECHA LAYOUT DA TELA DE CADASTRO -->
+				</h:panelGrid>
+
+
+				<h:panelGrid columns="2" style="float: right;">
+
+					<p:commandButton value="Salvar produto"
+						actionListener="#{produtoBack.cadastra}"
+						update="formCadastro:pnlCad msg formProduto:tbl"
+						onclick="PF('dlg').hide();" />
+
+					<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();"
+						style="background: red; color: #fff; border: none;" />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+		<!-- FECHA CADASTRO DE PRODUTO -->
+
+
+
+
+
+
+
+
+
+
+
+	</div>
+
+
+
+</h:body>
+</html>

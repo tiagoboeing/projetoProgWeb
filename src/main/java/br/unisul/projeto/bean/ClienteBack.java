@@ -11,9 +11,7 @@ import javax.faces.event.ActionEvent;
 import org.omnifaces.util.Messages;
 
 import br.unisul.projeto.dao.ClienteDao;
-import br.unisul.projeto.dao.EstadoDao;
 import br.unisul.projeto.domain.Cliente;
-import br.unisul.projeto.domain.Estado;
 
 
 @SuppressWarnings("serial")
