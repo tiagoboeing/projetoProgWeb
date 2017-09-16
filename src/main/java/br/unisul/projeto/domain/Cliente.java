@@ -52,12 +52,16 @@ public class Cliente implements Serializable{
 	
 	@Column(length=1)
 	private String cli_tipoconta;
+	
+	@Column(length=255)
+	private String cli_avatar;
 
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((cli_avatar == null) ? 0 : cli_avatar.hashCode());
 		result = prime * result + ((cli_cnpj == null) ? 0 : cli_cnpj.hashCode());
 		result = prime * result + ((cli_cpf == null) ? 0 : cli_cpf.hashCode());
 		result = prime * result + ((cli_dtnasc == null) ? 0 : cli_dtnasc.hashCode());
@@ -83,6 +87,11 @@ public class Cliente implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Cliente other = (Cliente) obj;
+		if (cli_avatar == null) {
+			if (other.cli_avatar != null)
+				return false;
+		} else if (!cli_avatar.equals(other.cli_avatar))
+			return false;
 		if (cli_cnpj == null) {
 			if (other.cli_cnpj != null)
 				return false;
@@ -150,6 +159,7 @@ public class Cliente implements Serializable{
 			return false;
 		return true;
 	}
+
 
 	public Long getCli_id() {
 		return cli_id;
@@ -255,6 +265,12 @@ public class Cliente implements Serializable{
 		this.cli_tipoconta = cli_tipoconta;
 	}
 	
-	
+	public String getCli_avatar() {
+		return cli_avatar;
+	}
+
+	public void setCli_avatar(String cli_avatar) {
+		this.cli_avatar = cli_avatar;
+	}
 
 }

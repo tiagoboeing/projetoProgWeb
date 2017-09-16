@@ -30,13 +30,14 @@
 		<!-- em desenvolvimento se coloca true, para mostrar no console -->
 		<property name="show_sql">true</property>
 
-		<!-- Cria as tabelas do banco de dados - (create) colocar para validate quando finalizar a programação -->
+		<!-- Cria as tabelas do banco de dados - (create) colocar para validate 
+			quando finalizar a programação -->
 		<property name="hbm2ddl.auto">create</property>
-		
+
 		<!-- Mapeamento das entidades -->
-		<mapping class="br.unisul.projeto.domain.Estado"/>
-		<mapping class="br.com.unisul.projeto.domain.Cliente"/>
-		<!-- 		<mapping class="br.com._3ctiming.sistema.domain.Usuario"/> -->
+		<mapping class="br.unisul.projeto.domain.Estado" />
+		<mapping class="br.unisul.projeto.domain.Cliente" />
+		<!-- <mapping class="br.com._3ctiming.sistema.domain.Usuario"/> -->
 
 	</session-factory>
 
