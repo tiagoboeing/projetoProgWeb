@@ -61,12 +61,13 @@
 		draggable="false" modal="true" closable="false">
 		<h:form id="frmCad" enctype="multipart/form-data">
 			<h:panelGrid columns="2" id="telaCad">
+				<p:outputLabel value="Valor" />
+				<p:inputText filter="true" value="#{crediarioBack.crediario.cli_nome}" />
+					<f:selectItem itemLabel="Selecione um Cliente" itemValue="" />
+					<f:selectItems value="#{crediarioBack.clientes}" var="cli"
+						itemLabel="#{cli.cli_nome}" itemValue="#{cli}" />
 				<p:outputLabel value="Cliente" />
-				<p:inputText size="20" maxlength="30"
-					value="#{crediarioBack.crediario.cli_nome}" />
-				<p:outputLabel value="UF" />
-				<p:selectOneMenu filter="true" value="#{crediarioBack.crediario.cli_nome}"
-					converter="omnifaces.SelectItemsConverter">
+				<p:selectOneMenu size="20" maxlength="30" value="#{crediarioBack.crediario.cli_nome}" converter="omnifaces.SelectItemsConverter">
 					<f:selectItem itemLabel="Selecione um Cliente" itemValue="" />
 					<f:selectItems value="#{crediarioBack.clientes}" var="cli"
 						itemLabel="#{cli.cli_nome}" itemValue="#{cli}" />
