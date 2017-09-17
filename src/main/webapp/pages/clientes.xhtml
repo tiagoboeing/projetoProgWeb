@@ -117,8 +117,9 @@
 
 					<div class="ui-g-12 ui-md-9 ui-lg-9">
 
-						<h:panelGrid columns="3">
+						<h:panelGrid columns="1">
 							<p:outputLabel value="Nome:" for="txtNome" />
+							
 							<p:inputText id="txtNome" maxlength="50" size="30"
 								value="#{clienteBack.c.cli_nome}" required="true"
 								requiredMessage="Nome obrigatório" />
@@ -126,8 +127,8 @@
 							<p:outputLabel value="Sobrenome:" for="txtSobrenome" />
 							<p:inputText id="txtSobrenome" maxlength="50" size="30"
 								value="#{clienteBack.c.cli_sobrenome}" required="true"
-								requiredMessage="Sobrenome obrigatório">
-							</p:inputText>
+								requiredMessage="Sobrenome obrigatório" />
+					
 						</h:panelGrid>
 
 					</div>
