@@ -20,7 +20,7 @@ public class Produto implements Serializable {
 	private String pro_nome;
 
 	@Column(length = 10)
-	private String pro_valor;
+	private Double pro_valor;
 
 	@Override
 	public int hashCode() {
@@ -31,6 +31,8 @@ public class Produto implements Serializable {
 		result = prime * result + ((pro_valor == null) ? 0 : pro_valor.hashCode());
 		return result;
 	}
+
+	
 
 	@Override
 	public boolean equals(Object obj) {
@@ -59,6 +61,8 @@ public class Produto implements Serializable {
 		return true;
 	}
 
+
+
 	public Long getPro_id() {
 		return pro_id;
 	}
@@ -75,13 +79,15 @@ public class Produto implements Serializable {
 		this.pro_nome = pro_nome;
 	}
 
-	public String getPro_valor() {
+	public Double getPro_valor() {
 		return pro_valor;
 	}
 
-	public void setPro_valor(String pro_valor) {
+	public void setPro_valor(Double pro_valor) {
 		this.pro_valor = pro_valor;
 	}
+
+	
 
 	
 }

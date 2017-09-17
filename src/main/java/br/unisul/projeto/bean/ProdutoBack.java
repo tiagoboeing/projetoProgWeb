@@ -13,6 +13,7 @@ import org.omnifaces.util.Messages;
 import br.unisul.projeto.dao.ProdutoDao;
 import br.unisul.projeto.domain.Produto;
 
+
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
@@ -27,7 +28,7 @@ public class ProdutoBack implements Serializable {
 		try {
 
 			ProdutoDao dao = new ProdutoDao();
-			listaProdutos = (ArrayList<Produto>) dao.listarTodos();
+			listaProdutos = (ArrayList<Produto>) dao.listarTodosProdutos();
 
 		} catch (Exception e) {
 
@@ -44,7 +45,7 @@ public class ProdutoBack implements Serializable {
 
 		dao.alterarProduto(p);
 
-		listaProdutos = (ArrayList<Produto>) dao.listarTodos();
+		listaProdutos = (ArrayList<Produto>) dao.listarTodosProdutos();
 
 	}
 
@@ -57,7 +58,7 @@ public class ProdutoBack implements Serializable {
 		ProdutoDao dao = new ProdutoDao();
 		dao.excluir(p);
 
-		listaProdutos = (ArrayList<Produto>) dao.listarTodos();
+		listaProdutos = (ArrayList<Produto>) dao.listarTodosProdutos();
 		// Messages.addGlobalInfo(estado.getNome() + "-" + estado.getUf());
 	}
 
@@ -69,20 +70,20 @@ public class ProdutoBack implements Serializable {
 		// System.out.println(estado.getNome() + " - " + estado.getUf());
 		Messages.addGlobalInfo(p.getPro_nome() + " - " + p.getPro_valor());
 
-		listaProdutos = (ArrayList<Produto>) dao.listarTodos();
+		listaProdutos = (ArrayList<Produto>) dao.listarTodosProdutos();
 		p = new Produto();
 
 	}
 
-	public Produto getC() {
+	public Produto getP() {
 		return p;
 	}
 
-	public void setC(Produto p) {
+	public void setP(Produto p) {
 		this.p = p;
 	}
 
-	public ArrayList<Produto> getListaClientes() {
+	public ArrayList<Produto> getListaProdutos() {
 		return listaProdutos;
 	}
 

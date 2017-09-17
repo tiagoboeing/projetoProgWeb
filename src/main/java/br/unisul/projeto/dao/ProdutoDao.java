@@ -54,7 +54,7 @@ public class ProdutoDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Produto> listarTodos() {
+	public List<Produto> listarTodosProdutos() {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 
 		try {
