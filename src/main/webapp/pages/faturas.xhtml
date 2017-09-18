@@ -21,17 +21,16 @@
 				
 				<f:facet name="header">
 					<p:commandButton value="Novo"
-						actionListener="#{faturasBack.novo()}"
+						actionListener="#{faturasBack.novo}"
 						oncomplete="PF('dlg').show();" update=":frmCad:telaCad :msg" />
 				</f:facet>
 				
-				<p:column headerText="Cliente" sortBy="#{fatura.cli_nome}"
-					filterBy="#{fatura.cli_nome}">
-					<h:outputText value="#{fatura.cli_nome}" />
-					<h:outputText value=" - " />
-					<h:outputText value="#{fatura.cli_nome}" />
+				<p:column headerText="Cliente" sortBy="#{fatura.cli_nome.cli_nome}"
+					filterBy="#{fatura.cli_nome.cli_nome}">
+					<h:outputText value="#{fatura.cli_nome.cli_nome} #{fatura.cli_nome.cli_sobrenome}" />
 				</p:column>
 
+<!-- VALOR DA FATURA -->
 				<p:column headerText="Valor R$" sortBy="#{fatura.fat_valor}"
 					filterBy="#{fatura.fat_valor}">
 					<h:outputText value="R$ #{fatura.fat_valor}" />
@@ -82,7 +81,7 @@
 
 				<f:selectItem itemLabel="Selecione um Cliente" itemValue="" />
 				<f:selectItems value="#{faturasBack.clientes}" var="cli"
-					itemLabel="#{cli.cli_nome}" itemValue="#{cli}" />
+					itemLabel="#{cli.cli_nome} #{cli.cli_sobrenome}" itemValue="#{cli}" />
 				<p:outputLabel value="Cliente" />
 
 				<p:selectOneMenu size="20" maxlength="30"
@@ -90,15 +89,16 @@
 					converter="omnifaces.SelectItemsConverter">
 					<f:selectItem itemLabel="Selecione um Cliente" itemValue="" />
 					<f:selectItems value="#{faturasBack.clientes}" var="cli"
-						itemLabel="#{cli.cli_nome}" itemValue="#{cli}" />
+						itemLabel="#{cli.cli_nome} #{cli.cli_sobrenome}" itemValue="#{cli}" />
 				</p:selectOneMenu>
 
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar"
+				<p:commandButton value="Salvar" onclick="PF('dlg').hide();"
 					actionListener="#{faturasBack.salvar}"
-					update=":msg :frmCad:telaCad :frmTab:table" />
+					update=":msg :frmCad:telaCad :frmTab:table"/>
+					
 				<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();" />
 			</h:panelGrid>
 
