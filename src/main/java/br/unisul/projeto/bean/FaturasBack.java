@@ -22,17 +22,21 @@ public class FaturasBack implements Serializable {
 
 	private Faturas f = new Faturas();
 	private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-	private ArrayList<Faturas> crediarios = new ArrayList<Faturas>();
+	private ArrayList<Faturas> listaFaturas = new ArrayList<Faturas>();
 
 	@PostConstruct
 	public void listar() {
+		
 		try {
+			
 			FaturasDao dao = new FaturasDao();
-			crediarios = (ArrayList<Faturas>) dao.listarTodosCrediarios();
+			listaFaturas = (ArrayList<Faturas>) dao.listarTodasFaturas();
+			
 		} catch (Exception e) {
-			Messages.addGlobalInfo("Erro ao listar crediarios");
+			Messages.addGlobalInfo("Erro ao listar faturas");
 			e.printStackTrace();
 		}
+		
 	}
 
 	public void novo() {
@@ -48,12 +52,12 @@ public class FaturasBack implements Serializable {
 			FaturasDao dao = new FaturasDao();
 			dao.salvar(f);
 
-			Messages.addGlobalInfo("Crediario cadastrado com sucesso");
+			Messages.addGlobalInfo("Fatura cadastrada com sucesso");
 			novo();
 			listar();
 
 		} catch (Exception e) {
-			Messages.addGlobalInfo("Erro ao cadastrar Crediario");
+			Messages.addGlobalInfo("Erro ao cadastrar fatura");
 			e.printStackTrace();
 		}
 
@@ -61,10 +65,11 @@ public class FaturasBack implements Serializable {
 
 	public void alterar(ActionEvent evt) {
 
-		f = (Faturas) evt.getComponent().getAttributes().get("clienteAlterar");
+		f = (Faturas) evt.getComponent().getAttributes().get("faturaAlterar");
 		// CidadeDao dao = new CidadeDao();
 		// dao.alterar(cidade);
 		// cidades = (ArrayList<Cidade>)dao.listarTodos();
+		
 		carregaClientes();
 		listar();
 
@@ -72,10 +77,10 @@ public class FaturasBack implements Serializable {
 
 	public void excluir(ActionEvent evt) {
 
-		f = (Faturas) evt.getComponent().getAttributes().get("clienteExcluir");
+		f = (Faturas) evt.getComponent().getAttributes().get("faturaExcluir");
 		FaturasDao dao = new FaturasDao();
 		dao.excluir(f);
-		crediarios = (ArrayList<Faturas>) dao.listarTodosCrediarios();
+		listaFaturas = (ArrayList<Faturas>) dao.listarTodasFaturas();
 		carregaClientes();
 		listar();
 	}
@@ -90,18 +95,23 @@ public class FaturasBack implements Serializable {
 		try {
 			ClienteDao dao = new ClienteDao();
 			clientes = (ArrayList<Cliente>) dao.listarTodos();
+			
 		} catch (Exception e) {
-			Messages.addGlobalInfo("Erro ao listar UFs");
+			
+			Messages.addGlobalInfo("Erro ao listar clientes");
 			e.printStackTrace();
+			
 		}
 	}
 
-	public Faturas getCrediario() {
+	
+	
+	public Faturas getF() {
 		return f;
 	}
 
-	public void setCrediario(Faturas crediario) {
-		this.f = crediario;
+	public void setF(Faturas f) {
+		this.f = f;
 	}
 
 	public ArrayList<Cliente> getClientes() {
@@ -112,12 +122,16 @@ public class FaturasBack implements Serializable {
 		this.clientes = clientes;
 	}
 
-	public ArrayList<Faturas> getCrediarios() {
-		return crediarios;
+	public ArrayList<Faturas> getListaFaturas() {
+		return listaFaturas;
 	}
 
-	public void setCrediarios(ArrayList<Faturas> crediarios) {
-		this.crediarios = crediarios;
+	public void setListaFaturas(ArrayList<Faturas> listaFaturas) {
+		this.listaFaturas = listaFaturas;
 	}
+
+
+	
+	
 
 }

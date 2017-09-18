@@ -7,43 +7,54 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Cadastro de Crediarios</title>
+	<title>Controle de faturas</title>
 </h:head>
 
 <h:body>
 
 	<p:growl id="msg" />
 	<h:form id="frmTab">
-		<p:panel header="Crediarios">
+		<p:panel header="Faturas">
+		
 			<p:dataTable emptyMessage="Sem registros" paginator="true"
-				value="#{crediarioBack.crediarios}" var="cred" rows="3" id="table">
+				value="#{faturasBack.listaFaturas}" var="fatura" rows="30" id="table">
+				
 				<f:facet name="header">
-					<p:commandButton value="Novo" actionListener="#{crediarioBack.novo()}"
+					<p:commandButton value="Novo"
+						actionListener="#{faturasBack.novo()}"
 						oncomplete="PF('dlg').show();" update=":frmCad:telaCad :msg" />
 				</f:facet>
-				<p:column headerText="Cliente" sortBy="#{cred.cli_nome}"
-					filterBy="#{cred.cli_nome}">
-					<h:outputText value="#{cred.cli_nome}" />
+				
+				<p:column headerText="Cliente" sortBy="#{fatura.cli_nome}"
+					filterBy="#{fatura.cli_nome}">
+					<h:outputText value="#{fatura.cli_nome}" />
 					<h:outputText value=" - " />
-					<h:outputText value="#{cred.cli_nome}" />
+					<h:outputText value="#{fatura.cli_nome}" />
 				</p:column>
-				<p:column headerText="Valor R$" sortBy="#{cred.cre_valor}"
-					filterBy="#{cred.cre_valor}">
-					<h:outputText value="#{cred.cre_valor}" />
+
+				<p:column headerText="Valor R$" sortBy="#{fatura.fat_valor}"
+					filterBy="#{fatura.fat_valor}">
+					<h:outputText value="R$ #{fatura.fat_valor}" />
 				</p:column>
+
 				<p:column headerText="Opções">
+
 					<p:commandButton icon="ui-icon-trash"
-						actionListener="#{crediarioBack.excluir}" update=":msg :frmTab:table">
-						<p:confirm header="Confirmação" message="Excluir Credirio?"
+						actionListener="#{faturasBack.excluir}"
+						update=":msg :frmTab:table">
+
+						<p:confirm header="Confirmação" message="Excluir fatura?"
 							icon="ui-icon-alert" />
-						<f:attribute name="crediarioExcluir" value="#{cid}" />
+						<f:attribute name="faturaExcluir" value="#{cid}" />
 					</p:commandButton>
+
 					<p:commandButton icon="ui-icon-pencil"
 						oncomplete="PF('dlg').show();"
-						actionListener="#{crediarioBack.alterar}"
+						actionListener="#{faturasBack.alterar}"
 						update=":frmCad:telaCad :msg">
-						<f:attribute name="crediarioAlterar" value="#{cred}" />
-						<!-- 						<f:actionListener type="org.omnifaces.eventListener.ResetInputAjaxActionListener"/> -->
+						<f:attribute name="faturaAlterar" value="#{fatura}" />
+						<!-- <f:actionListener type="org.omnifaces.eventListener.ResetInputAjaxActionListener"/> -->
+
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
@@ -59,29 +70,38 @@
 		</p:panel>
 	</h:form>
 
-	<p:dialog header="Crediarios - Cadastro" widgetVar="dlg" resizable="false"
-		draggable="false" modal="true" closable="false">
+	<p:dialog header="Faturas" widgetVar="dlg"
+		resizable="false" draggable="false" modal="true" closable="false">
 		<h:form id="frmCad" enctype="multipart/form-data">
+		
 			<h:panelGrid columns="2" id="telaCad">
-			
+
 				<p:outputLabel value="Valor" />
-				<p:inputText filter="true" value="#{crediarioBack.crediario.cli_nome}" />
-					<f:selectItem itemLabel="Selecione um Cliente" itemValue="" />
-					<f:selectItems value="#{crediarioBack.clientes}" var="cli"
-						itemLabel="#{cli.cli_nome}" itemValue="#{cli}" />
+
+				<p:inputText filter="true" value="#{faturasBack.f.fat_valor}" />
+
+				<f:selectItem itemLabel="Selecione um Cliente" itemValue="" />
+				<f:selectItems value="#{faturasBack.clientes}" var="cli"
+					itemLabel="#{cli.cli_nome}" itemValue="#{cli}" />
 				<p:outputLabel value="Cliente" />
-				<p:selectOneMenu size="20" maxlength="30" value="#{crediarioBack.crediario.cli_nome}" converter="omnifaces.SelectItemsConverter">
+
+				<p:selectOneMenu size="20" maxlength="30"
+					value="#{faturasBack.f.cli_nome}"
+					converter="omnifaces.SelectItemsConverter">
 					<f:selectItem itemLabel="Selecione um Cliente" itemValue="" />
-					<f:selectItems value="#{crediarioBack.clientes}" var="cli"
+					<f:selectItems value="#{faturasBack.clientes}" var="cli"
 						itemLabel="#{cli.cli_nome}" itemValue="#{cli}" />
 				</p:selectOneMenu>
+
 			</h:panelGrid>
+
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar"
-					actionListener="#{crediarioBack.salvar}"
+					actionListener="#{faturasBack.salvar}"
 					update=":msg :frmCad:telaCad :frmTab:table" />
 				<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();" />
 			</h:panelGrid>
+
 		</h:form>
 	</p:dialog>
 

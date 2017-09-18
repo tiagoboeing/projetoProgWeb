@@ -37,7 +37,7 @@
 		<!-- Mapeamento das entidades -->
 		<mapping class="br.unisul.projeto.domain.Estado" />
 		<mapping class="br.unisul.projeto.domain.Cliente" />
-		<!-- <mapping class="br.com._3ctiming.sistema.domain.Usuario"/> -->
+		<mapping class="br.unisul.projeto.domain.Faturas" />
 
 	</session-factory>
 

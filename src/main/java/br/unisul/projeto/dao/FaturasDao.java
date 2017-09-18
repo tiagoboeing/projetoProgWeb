@@ -24,6 +24,7 @@ public class FaturasDao {
 			consulta.add(Restrictions.eq("cli_nome.cli_id", cliente.getCli_id()));
 			consulta.addOrder(org.hibernate.criterion.Order.asc("nome"));
 			List<Cliente> resultado = consulta.list();
+			
 			return resultado;
 			
 		} catch (Exception e) {
@@ -117,7 +118,7 @@ public class FaturasDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Faturas> listarTodosCrediarios()
+	public List<Faturas> listarTodasFaturas()
 	{
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		
