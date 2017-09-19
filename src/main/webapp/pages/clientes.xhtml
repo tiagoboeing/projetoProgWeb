@@ -45,6 +45,13 @@
 						<h:outputText
 							value="#{cliente.cli_empresa} - #{cliente.cli_razaosocial}" />
 					</p:column>
+					
+					<!-- SALDO DO CLIENTE -->
+					<p:column headerText="Saldo R$"
+						sortBy="#{cliente.cli_saldo}">
+						<h:outputText
+							value="#{cliente.cli_saldo}" />
+					</p:column>
 
 					<p:column headerText="Opções">
 

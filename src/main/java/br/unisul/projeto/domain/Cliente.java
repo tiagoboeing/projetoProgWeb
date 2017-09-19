@@ -56,6 +56,9 @@ public class Cliente implements Serializable{
 	@Column(length=255)
 	private String cli_avatar;
 
+	@Column(length=50)
+	private Double cli_saldo;
+	
 	
 	@Override
 	public int hashCode() {
@@ -72,6 +75,7 @@ public class Cliente implements Serializable{
 		result = prime * result + ((cli_observacoes == null) ? 0 : cli_observacoes.hashCode());
 		result = prime * result + ((cli_razaosocial == null) ? 0 : cli_razaosocial.hashCode());
 		result = prime * result + ((cli_rg == null) ? 0 : cli_rg.hashCode());
+		result = prime * result + ((cli_saldo == null) ? 0 : cli_saldo.hashCode());
 		result = prime * result + ((cli_sobrenome == null) ? 0 : cli_sobrenome.hashCode());
 		result = prime * result + ((cli_status == null) ? 0 : cli_status.hashCode());
 		result = prime * result + ((cli_tipoconta == null) ? 0 : cli_tipoconta.hashCode());
@@ -142,6 +146,11 @@ public class Cliente implements Serializable{
 				return false;
 		} else if (!cli_rg.equals(other.cli_rg))
 			return false;
+		if (cli_saldo == null) {
+			if (other.cli_saldo != null)
+				return false;
+		} else if (!cli_saldo.equals(other.cli_saldo))
+			return false;
 		if (cli_sobrenome == null) {
 			if (other.cli_sobrenome != null)
 				return false;
@@ -160,6 +169,14 @@ public class Cliente implements Serializable{
 		return true;
 	}
 
+
+	public Double getCli_saldo() {
+		return cli_saldo;
+	}
+
+	public void setCli_saldo(Double cli_saldo) {
+		this.cli_saldo = cli_saldo;
+	}
 
 	public Long getCli_id() {
 		return cli_id;
