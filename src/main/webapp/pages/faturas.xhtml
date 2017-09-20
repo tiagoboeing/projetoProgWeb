@@ -30,7 +30,13 @@
 					<h:outputText value="#{fatura.cli_nome.cli_nome} #{fatura.cli_nome.cli_sobrenome}" />
 				</p:column>
 
-<!-- VALOR DA FATURA -->
+				<!-- DATA DA FATURA -->
+				<p:column headerText="Data" sortBy="#{fatura.fat_data}"
+					filterBy="#{fatura.fat_data}">
+					<h:outputText value="#{fatura.fat_data}" />
+				</p:column>
+					
+				<!-- VALOR DA FATURA -->
 				<p:column headerText="Valor R$" sortBy="#{fatura.fat_valor}"
 					filterBy="#{fatura.fat_valor}">
 					<h:outputText value="R$ #{fatura.fat_valor}" />
@@ -73,10 +79,6 @@
 		
 			<h:panelGrid columns="2" id="telaCad">
 
-				<p:outputLabel value="Valor" />
-
-				<p:inputText filter="true" value="#{faturasBack.f.fat_valor}" />
-
 				<f:selectItem itemLabel="Selecione um Cliente" itemValue="" />
 				<f:selectItems value="#{faturasBack.clientes}" var="cli"
 					itemLabel="#{cli.cli_nome} #{cli.cli_sobrenome}" itemValue="#{cli}" />
@@ -89,6 +91,16 @@
 					<f:selectItems value="#{faturasBack.clientes}" var="cli"
 						itemLabel="#{cli.cli_nome} #{cli.cli_sobrenome}" itemValue="#{cli}" />
 				</p:selectOneMenu>
+           			 			
+				<p:outputLabel value="Valor" />
+
+				<p:inputText filter="true" value="#{faturasBack.f.fat_valor}" />
+				
+				<!-- TENTANDO FAZER COM QUE A DATA APAREÇA AUTOMATICA -->
+				<!-- <p:calendar id="di" value="#{processoBean.processo.datahoraInicio}"
+            					required="true" 
+            					requiredMessage="Data Início Obrigatório"
+           			 			pattern="dd/MM/yyyy HH:mm" />  -->
 
 			</h:panelGrid>
 
@@ -96,6 +108,8 @@
 				<p:commandButton value="Salvar" onclick="PF('dlg').hide();"
 					actionListener="#{faturasBack.salvar}"
 					update=":msg :frmCad:telaCad :frmTab:table"/>
+					
+					
 					
 				<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();" />
 			</h:panelGrid>

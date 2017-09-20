@@ -1,6 +1,10 @@
 package br.unisul.projeto.bean;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
@@ -23,7 +27,20 @@ public class FaturasBack implements Serializable {
 	private Faturas f = new Faturas();
 	private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	private ArrayList<Faturas> listaFaturas = new ArrayList<Faturas>();
-
+	
+	//<!-- TENTANDO FAZER COM QUE A DATA APAREÇA AUTOMATICA -->
+	//private java.util.Date datahoraInicio;
+	        
+	//pst.setTimestamp(5, new java.sql.Timestamp(p.getDatahoraInicio().getTime()));
+	
+	
+	/*private String getDateTime() {
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date(0);
+		return dateFormat.format(date);
+	}*/
+	
+	
 	@PostConstruct
 	public void listar() {
 		
