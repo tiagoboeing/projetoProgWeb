@@ -39,12 +39,11 @@
 				<p:column headerText="Opções">
 
 					<p:commandButton icon="ui-icon-trash"
-						actionListener="#{faturasBack.excluir}"
-						update=":msg :frmTab:table">
+						actionListener="#{faturasBack.excluir}" update=":msg :frmTab:table">
 
 						<p:confirm header="Confirmação" message="Excluir fatura?"
 							icon="ui-icon-alert" />
-						<f:attribute name="faturaExcluir" value="#{cid}" />
+						<f:attribute name="faturaExcluir" value="#{fatura}" />
 					</p:commandButton>
 
 					<p:commandButton icon="ui-icon-pencil"
@@ -52,7 +51,6 @@
 						actionListener="#{faturasBack.alterar}"
 						update=":frmCad:telaCad :msg">
 						<f:attribute name="faturaAlterar" value="#{fatura}" />
-						<!-- <f:actionListener type="org.omnifaces.eventListener.ResetInputAjaxActionListener"/> -->
 
 					</p:commandButton>
 				</p:column>
