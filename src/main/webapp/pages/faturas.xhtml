@@ -46,6 +46,7 @@
 
 				<p:column headerText="Opções">
 
+					<!-- EXCLUIR FATURA -->
 					<p:commandButton icon="ui-icon-trash"
 						actionListener="#{faturasBack.excluir}" update=":msg :frmTab:table">
 
@@ -54,6 +55,7 @@
 						<f:attribute name="faturaExcluir" value="#{fatura}" />
 					</p:commandButton>
 
+					<!-- EDITAR FATURA -->
 					<p:commandButton icon="ui-icon-pencil"
 						oncomplete="PF('dlg').show();"
 						actionListener="#{faturasBack.alterar}"
@@ -61,13 +63,15 @@
 						<f:attribute name="faturaAlterar" value="#{fatura}" />
 					</p:commandButton>	
 						
-					<p:commandButton icon="fa-dollar"
+						
+					<!-- EDITAR FATURA -->
+					<p:commandButton icon="ui-icon-dollar"
 						oncomplete="PF('dlg').show();"
 						actionListener="#{faturasBack.alterar}"
-						update=":frmCad:telaCad :msg">
+						update=":frmCad:telaCad :msg" value="Pagar fatura" style="background: green; color: #fff;">
 						<f:attribute name="faturaAlterar" value="#{fatura}" />	
-
 					</p:commandButton>
+					
 				</p:column>
 			</p:dataTable>
 
