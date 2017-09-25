@@ -68,7 +68,8 @@ public class ClienteBack implements Serializable{
 		dao.salvarCliente(c);
 		
 		// System.out.println(estado.getNome() + " - " + estado.getUf());
-		Messages.addGlobalInfo(c.getCli_nome() + " - " + c.getCli_sobrenome());
+		//Messages.addGlobalInfo(c.getCli_nome() + " - " + c.getCli_sobrenome());
+		Messages.addGlobalInfo("Cliente cadastrado com sucesso");
 		
 		listaClientes = (ArrayList<Cliente>) dao.listarTodos();
 		c = new Cliente();
