@@ -66,14 +66,14 @@
 					</p:commandButton>
 
 
-					<!-- EDITAR FATURA -->
-					<p:commandButton icon="ui-icon-dollar"
-						oncomplete="PF('dlg').show();"
-						actionListener="#{faturasBack.alterar}"
-						update=":frmCad:telaCad :msg" value="Pagar fatura"
-						style="background: green; color: #fff;">
+
+					<!-- PAGAR FATURA -->
+					<p:commandButton icon="ui-icon-dollar" oncomplete="PF('pagar').show();"
+						actionListener="#{faturasBack.alterar}"	update=":formPagarFatura:telaPagar :msg" 
+						value="Pagar fatura" style="background: green; color: #fff;">
 						<f:attribute name="faturaAlterar" value="#{fatura}" />
 					</p:commandButton>
+					
 
 				</p:column>
 
@@ -134,6 +134,47 @@
 
 		</h:form>
 	</p:dialog>
+	
+	
+	
+	<!-- PAGAR FATURA -->
+	<p:dialog header="Faturas" widgetVar="pagar" resizable="false" draggable="false" modal="true" closable="false">
+		
+		<h:form id="formPagarFatura">
+			
+			
+			<!-- INPUTS -->
+			<h:panelGrid columns="2" id="telaPagar">
 
+				<p:outputLabel value="Valor pago" />
+				<p:inputText filter="true" value="#{faturasBack.f.fat_valor}" />
+
+				<p:outputLabel for="event" value="Pago em" />
+		        <p:calendar id="event" value="#{faturasBack.f.fat_data}">
+		            <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="" />
+		        </p:calendar>
+		        
+		        
+		        <p:outputLabel for="status" value="Status:" />
+		        <p:selectOneMenu id="status" value="#{faturasBack.f.fat_status}" style="width:125px">
+		            <f:selectItem itemLabel="Pago" itemValue="Pago" />
+		            <f:selectItem itemLabel="Não pago" itemValue="Não pago" />
+		            <f:selectItem itemLabel="Cancelado" itemValue="Cancelado" />
+		        </p:selectOneMenu>
+        		
+			</h:panelGrid>
+			
+			
+			<!-- BOTÕES -->
+			<h:panelGrid columns="2">
+				<p:commandButton value="Salvar" onclick="PF('pagar').hide();" actionListener="#{faturasBack.salvar}" update=":msg :formPagarFatura:telaPagar :frmTab:table" />
+
+				<p:commandButton value="Fechar" oncomplete="PF('pagar').hide();" />
+			</h:panelGrid>
+			
+			
+		</h:form>
+		
+	</p:dialog>
 </h:body>
 </html>
