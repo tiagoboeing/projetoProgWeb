@@ -151,16 +151,14 @@
 				<p:inputText filter="true" value="#{faturasBack.f.fat_valorPago}" />
 
 				<p:outputLabel for="event" value="Pago em" />
-		        <p:calendar id="event" value="#{faturasBack.f.fat_data}">
+		        <p:calendar id="event" value="#{faturasBack.f.fat_dataPago}">
 		            <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="" />
 		        </p:calendar>
 		        
 		        
 		        <p:outputLabel for="status" value="Status:" />
 		        <p:selectOneMenu id="status" value="#{faturasBack.f.fat_status}" style="width:125px">
-		            <f:selectItem itemLabel="Pago" itemValue="Pago" />
-		            <f:selectItem itemLabel="Não pago" itemValue="Não pago" />
-		            <f:selectItem itemLabel="Cancelado" itemValue="Cancelado" />
+		            <f:selectItem itemLabel="Pago" itemValue="Pago" editable="false"/>
 		        </p:selectOneMenu>
         		
 			</h:panelGrid>

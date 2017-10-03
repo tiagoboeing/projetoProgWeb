@@ -130,8 +130,6 @@ public class FaturasDao {
 			//abre sessão
 			t = sessao.beginTransaction();
 			
-			f.setFat_valor(f.getFat_valor() - f.getFat_valorPago());
-			
 			sessao.merge(f);
 			t.commit();
 
