@@ -67,6 +67,13 @@ public class FaturasBack implements Serializable {
 
 		try {
 			FaturasDao dao = new FaturasDao();
+
+			// status padrão
+			f.setFat_status("Não pago");
+			
+			
+			f.setFat_data();
+			
 			dao.salvar(f);
 
 			Messages.addGlobalInfo("Fatura cadastrada com sucesso");
@@ -101,6 +108,23 @@ public class FaturasBack implements Serializable {
 		carregaClientes();
 		listar();
 	}
+	
+	
+	// SALVAR VALOR PAGO
+	public void pagarFatura(ActionEvent evt) {
+		
+		f = (Faturas) evt.getComponent().getAttributes().get("pagarFatura");
+		FaturasDao dao = new FaturasDao();
+		dao.pagarFatura(f);
+		
+		Messages.addGlobalInfo("Fatura paga com sucesso");
+		novo();
+		listar();
+		
+	}
+	
+	
+	
 
 	// Serve para quando iniciar o program chamar o método para ser executado
 	// @PostConstruct

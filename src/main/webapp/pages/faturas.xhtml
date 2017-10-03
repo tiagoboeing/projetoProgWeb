@@ -69,12 +69,11 @@
 
 					<!-- PAGAR FATURA -->
 					<p:commandButton icon="ui-icon-dollar" oncomplete="PF('pagar').show();"
-						actionListener="#{faturasBack.alterar}"	update=":formPagarFatura:telaPagar :msg" 
+						actionListener="#{faturasBack.pagarFatura}"	update=":formPagarFatura:telaPagar :msg" 
 						value="Pagar fatura" style="background: green; color: #fff;">
-						<f:attribute name="faturaAlterar" value="#{fatura}" />
+						<f:attribute name="pagarFatura" value="#{fatura}" />
 					</p:commandButton>
 					
-
 				</p:column>
 
 			</p:dataTable>
@@ -89,9 +88,11 @@
 
 		</p:panel>
 	</h:form>
+	
 
 	<p:dialog header="Faturas" widgetVar="dlg" resizable="false"
 		draggable="false" modal="true" closable="false">
+		
 		<h:form id="frmCad" enctype="multipart/form-data">
 
 			<h:panelGrid columns="2" id="telaCad">
@@ -147,7 +148,7 @@
 			<h:panelGrid columns="2" id="telaPagar">
 
 				<p:outputLabel value="Valor pago" />
-				<p:inputText filter="true" value="#{faturasBack.f.fat_valor}" />
+				<p:inputText filter="true" value="#{faturasBack.f.fat_valorPago}" />
 
 				<p:outputLabel for="event" value="Pago em" />
 		        <p:calendar id="event" value="#{faturasBack.f.fat_data}">
@@ -167,7 +168,7 @@
 			
 			<!-- BOTÕES -->
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" onclick="PF('pagar').hide();" actionListener="#{faturasBack.salvar}" update=":msg :formPagarFatura:telaPagar :frmTab:table" />
+				<p:commandButton value="Salvar" onclick="PF('pagar').hide();" actionListener="#{faturasBack.pagarFatura}" update=":msg :formPagarFatura:telaPagar :frmTab:table" />
 
 				<p:commandButton value="Fechar" oncomplete="PF('pagar').hide();" />
 			</h:panelGrid>
