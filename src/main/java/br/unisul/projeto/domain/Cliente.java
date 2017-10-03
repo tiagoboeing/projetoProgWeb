@@ -8,63 +8,72 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
-@Entity 
-public class Cliente implements Serializable{
-	
+@Entity
+public class Cliente implements Serializable {
+
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long cli_id;
-	
-	@Column(length=100)
+
+	@Column(length = 100)
 	private String cli_nome;
-	
-	@Column(length=100)
+
+	@Column(length = 100)
 	private String cli_sobrenome;
-	
-	@Column(length=255)
+
+	@Column(length = 100)
+	private String cli_cidade;
+
+	@Column(length = 255)
 	private String cli_empresa;
-	
-	@Column(length=255)
+
+	@Column(length = 255)
 	private String cli_razaosocial;
-	
-	@Column(length=20)
+
+	@Column(length = 20)
 	private String cli_cpf;
-	
-	@Column(length=20)
+
+	@Column(length = 20)
 	private String cli_rg;
-	
-	@Column(length=20)
+
+	@Column(length = 20)
 	private String cli_cnpj;
-	
-	@Column(length=20)
+
+	@Column(length = 20)
 	private Date cli_dtnasc;
-	
-	@Column(length=255)
+
+	@Column(length = 255)
 	private String cli_email;
-	
-	@Column(length=255)
+
+	@Column(length = 255)
 	private String cli_observacoes;
-	
-	@Column(length=1)
+
+	@Column(length = 1)
 	private Integer cli_status;
-	
-	@Column(length=1)
+
+	@Column(length = 1)
 	private String cli_tipoconta;
-	
-	@Column(length=255)
+
+	@Column(length = 255)
 	private String cli_avatar;
 
-	@Column(length=50)
+	@Column(length = 50)
 	private Double cli_saldo;
-	
-	
+
+	// Serve para utilizar no que irá ficar em memória, não ira para o banco de
+	// dados
+	@Transient
+	private String pathTemp;
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cli_avatar == null) ? 0 : cli_avatar.hashCode());
+		result = prime * result + ((cli_cidade == null) ? 0 : cli_cidade.hashCode());
 		result = prime * result + ((cli_cnpj == null) ? 0 : cli_cnpj.hashCode());
 		result = prime * result + ((cli_cpf == null) ? 0 : cli_cpf.hashCode());
 		result = prime * result + ((cli_dtnasc == null) ? 0 : cli_dtnasc.hashCode());
@@ -79,6 +88,7 @@ public class Cliente implements Serializable{
 		result = prime * result + ((cli_sobrenome == null) ? 0 : cli_sobrenome.hashCode());
 		result = prime * result + ((cli_status == null) ? 0 : cli_status.hashCode());
 		result = prime * result + ((cli_tipoconta == null) ? 0 : cli_tipoconta.hashCode());
+		result = prime * result + ((pathTemp == null) ? 0 : pathTemp.hashCode());
 		return result;
 	}
 
@@ -95,6 +105,11 @@ public class Cliente implements Serializable{
 			if (other.cli_avatar != null)
 				return false;
 		} else if (!cli_avatar.equals(other.cli_avatar))
+			return false;
+		if (cli_cidade == null) {
+			if (other.cli_cidade != null)
+				return false;
+		} else if (!cli_cidade.equals(other.cli_cidade))
 			return false;
 		if (cli_cnpj == null) {
 			if (other.cli_cnpj != null)
@@ -166,9 +181,13 @@ public class Cliente implements Serializable{
 				return false;
 		} else if (!cli_tipoconta.equals(other.cli_tipoconta))
 			return false;
+		if (pathTemp == null) {
+			if (other.pathTemp != null)
+				return false;
+		} else if (!pathTemp.equals(other.pathTemp))
+			return false;
 		return true;
 	}
-
 
 	public Double getCli_saldo() {
 		return cli_saldo;
@@ -281,7 +300,7 @@ public class Cliente implements Serializable{
 	public void setCli_tipoconta(String cli_tipoconta) {
 		this.cli_tipoconta = cli_tipoconta;
 	}
-	
+
 	public String getCli_avatar() {
 		return cli_avatar;
 	}
@@ -290,4 +309,19 @@ public class Cliente implements Serializable{
 		this.cli_avatar = cli_avatar;
 	}
 
+	public String getPathTemp() {
+		return pathTemp;
+	}
+
+	public void setPathTemp(String pathTemp) {
+		this.pathTemp = pathTemp;
+	}
+
+	public String getCli_cidade() {
+		return cli_cidade;
+	}
+
+	public void setCli_cidade(String cli_cidade) {
+		this.cli_cidade = cli_cidade;
+	}
 }

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
 @Entity
@@ -36,16 +37,28 @@ public class Faturas implements Serializable {
 	
 	@Column(length = 20)
 	private String fat_status;
+	
+	
+	// RECUPERA VALOR PAGO
+	@Column(length = 20)
+	private Double fat_valorPago;
+	
+	@Column(length = 20)
+	private Date fat_dataPago;
 
 	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cli_nome == null) ? 0 : cli_nome.hashCode());
+		result = prime * result + ((fat_data == null) ? 0 : fat_data.hashCode());
+		result = prime * result + ((fat_dataPago == null) ? 0 : fat_dataPago.hashCode());
 		result = prime * result + ((fat_id == null) ? 0 : fat_id.hashCode());
 		result = prime * result + ((fat_status == null) ? 0 : fat_status.hashCode());
 		result = prime * result + ((fat_valor == null) ? 0 : fat_valor.hashCode());
+		result = prime * result + ((fat_valorPago == null) ? 0 : fat_valorPago.hashCode());
 		return result;
 	}
 
@@ -63,6 +76,16 @@ public class Faturas implements Serializable {
 				return false;
 		} else if (!cli_nome.equals(other.cli_nome))
 			return false;
+		if (fat_data == null) {
+			if (other.fat_data != null)
+				return false;
+		} else if (!fat_data.equals(other.fat_data))
+			return false;
+		if (fat_dataPago == null) {
+			if (other.fat_dataPago != null)
+				return false;
+		} else if (!fat_dataPago.equals(other.fat_dataPago))
+			return false;
 		if (fat_id == null) {
 			if (other.fat_id != null)
 				return false;
@@ -77,6 +100,11 @@ public class Faturas implements Serializable {
 			if (other.fat_valor != null)
 				return false;
 		} else if (!fat_valor.equals(other.fat_valor))
+			return false;
+		if (fat_valorPago == null) {
+			if (other.fat_valorPago != null)
+				return false;
+		} else if (!fat_valorPago.equals(other.fat_valorPago))
 			return false;
 		return true;
 	}
@@ -123,6 +151,21 @@ public class Faturas implements Serializable {
 		this.fat_valor = fat_valor;
 	}
 
+	public Double getFat_valorPago() {
+		return fat_valorPago;
+	}
+
+	public void setFat_valorPago(Double fat_valorPago) {
+		this.fat_valorPago = fat_valorPago;
+	}
+
+	public Date getFat_dataPago() {
+		return fat_dataPago;
+	}
+
+	public void setFat_dataPago(Date fat_dataPago) {
+		this.fat_dataPago = fat_dataPago;
+	}
 
 
 

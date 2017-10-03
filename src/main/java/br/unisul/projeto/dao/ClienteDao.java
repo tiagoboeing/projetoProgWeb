@@ -60,7 +60,7 @@ public class ClienteDao {
 		try {
 			Criteria consulta = sessao.createCriteria(Cliente.class);
 			List<Cliente> resultado = consulta.list();
-			
+
 			return resultado;
 
 		} catch (Exception e) {
@@ -92,5 +92,28 @@ public class ClienteDao {
 
 		}
 	}
-	
+
+	public Cliente salvar(Cliente cli) {
+		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
+		Transaction t = null;
+		Cliente novo = null;
+
+		try {
+			t = sessao.beginTransaction();
+			novo = (Cliente) sessao.merge(cli);
+			t.commit();
+
+		} catch (Exception e) {
+			if (t != null) {
+				t.rollback();
+			}
+			throw (e);
+
+		} finally {
+			sessao.close();
+
+		}
+		return novo;
+	}
+
 }
