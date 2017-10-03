@@ -117,6 +117,38 @@ public class FaturasDao {
 		}
 	}
 	
+	
+	// pagar fatura
+	// @arguments: objeto fatura
+	public void pagarFatura(Faturas f) {
+		
+		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
+		Transaction t = null;
+		
+		try {
+			
+			//abre sessão
+			t = sessao.beginTransaction();
+			
+			f.setFat_valor(f.getFat_valor() - f.getFat_valorPago());
+			
+			sessao.merge(f);
+			t.commit();
+
+			
+		} catch (Exception e) {
+			if (t != null) {
+				t.rollback();
+			}
+			throw (e);
+
+		} finally {
+			sessao.close();
+		}
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<Faturas> listarTodasFaturas()
 	{
