@@ -118,7 +118,6 @@ public class FaturasBack implements Serializable {
 		FaturasDao dao = new FaturasDao();
 		
 		dao.pagarFatura(f);
-		
 			
 			f.setFat_id(null);
 			
