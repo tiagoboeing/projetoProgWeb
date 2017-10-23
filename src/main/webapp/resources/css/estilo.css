@@ -35,3 +35,7 @@ body {
 .clear {
 	clear: both;
 }
+
+.divLogo{
+	padding-bottom: 1px;
+}	
