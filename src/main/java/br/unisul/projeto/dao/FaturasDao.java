@@ -120,7 +120,7 @@ public class FaturasDao {
 	
 	// pagar fatura
 	// @arguments: objeto fatura
-	public void pagarFatura(Faturas f) {
+	public Faturas pagarFatura(Faturas f) {
 		
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction t = null;
@@ -129,8 +129,6 @@ public class FaturasDao {
 			
 			//abre sessão
 			t = sessao.beginTransaction();
-			
-			f.setFat_valor(f.getFat_valor() - f.getFat_valorPago());
 			
 			sessao.merge(f);
 			t.commit();
@@ -145,6 +143,8 @@ public class FaturasDao {
 		} finally {
 			sessao.close();
 		}
+		
+		return f;
 	}
 	
 	

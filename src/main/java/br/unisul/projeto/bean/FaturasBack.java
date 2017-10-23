@@ -70,9 +70,10 @@ public class FaturasBack implements Serializable {
 
 			// status padrão
 			f.setFat_status("Não pago");
-			
-			
-			f.setFat_data();
+					
+			// data padrão
+			String dataPadrao = "2006-12-23";	
+			f.setFat_data(dataPadrao);
 			
 			dao.salvar(f);
 
@@ -115,14 +116,32 @@ public class FaturasBack implements Serializable {
 		
 		f = (Faturas) evt.getComponent().getAttributes().get("pagarFatura");
 		FaturasDao dao = new FaturasDao();
+		
 		dao.pagarFatura(f);
+			
+			f.setFat_id(null);
+			
+			// cria fatura com valor restante
+			//FaturasDao dao2 = new FaturasDao();
+			f.setFat_valor(f.getFat_valor() - f.getFat_valorPago());
+			
+			//define data de pagamento vazia - não pago
+			f.setFat_dataPago(null);
+			
+			// status padrão para nova fatura
+			f.setFat_status("Não pago");
+			
+			// define valor pago como vazio
+			f.setFat_valorPago(null);
+			
+			dao.pagarFatura(f);
+
 		
 		Messages.addGlobalInfo("Fatura paga com sucesso");
 		novo();
 		listar();
 		
 	}
-	
 	
 	
 
