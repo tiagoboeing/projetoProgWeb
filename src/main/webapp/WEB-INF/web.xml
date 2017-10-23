@@ -39,9 +39,9 @@
 
 	<!-- TEMA PRIMEFACES -->
 	<context-param>
-		<param-name>primefaces.THEME</param-name>
-		<param-value>delta</param-value>
-	</context-param>
+    	<param-name>primefaces.THEME</param-name>
+    	<param-value>delta</param-value>
+    </context-param>
 
 	<!-- PRETTY FACES - URL AMIGÁVEL -->
 	<!-- <filter> <filter-name>Pretty Filter</filter-name> <filter-class>com.ocpsoft.pretty.PrettyFilter</filter-class> 
@@ -51,25 +51,7 @@
 		<dispatcher>FORWARD</dispatcher> <dispatcher>REQUEST</dispatcher> <dispatcher>ERROR</dispatcher> 
 		</filter-mapping> -->
 
-	<!-- login filter -->
-	<filter>
-		<filter-name>LoginFilter</filter-name>
-		<filter-class>br.unisul.projeto.util.LoginFilter</filter-class>
-
-	</filter>
-
-	<filter-mapping>
-		<filter-name>LoginFilter</filter-name>
-		<url-pattern>/pages/*</url-pattern>
-
-	</filter-mapping>
-
-	<!-- duração da sessão : session-timeout em minutos -->
-	<session-config>
-		<session-timeout>10</session-timeout>
-
-	</session-config>
-
+	
 
 </web-app>
 

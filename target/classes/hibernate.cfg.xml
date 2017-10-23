@@ -32,13 +32,12 @@
 
 		<!-- Cria as tabelas do banco de dados - (create) colocar para validate 
 			quando finalizar a programação -->
-		<property name="hbm2ddl.auto">validate</property>
+		<property name="hbm2ddl.auto">create</property>
 
 		<!-- Mapeamento das entidades -->
 		<mapping class="br.unisul.projeto.domain.Estado" />
 		<mapping class="br.unisul.projeto.domain.Cliente" />
 		<mapping class="br.unisul.projeto.domain.Faturas" />
-		<mapping class="br.unisul.projeto.domain.Usuario" />
 
 	</session-factory>
 
