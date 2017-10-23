@@ -33,8 +33,6 @@
 
 	<!-- FONT-AWESOME -->
 	<script src="https://use.fontawesome.com/73e4bfdca5.js"></script>
-	
-	<h:outputStylesheet library="css" name="estilo.css"/>
 
 </h:head>
 
@@ -44,11 +42,6 @@
 	<%@ include file="pages/parts/header.xhtml"%>
 
 	<!-- conteúdo -->
-	
-	<div id="telas">
-		<ui:insert name="telas"/>
-	</div>
-	
 	<%@ include file="pages/paginas.jsp" %>
 
 
