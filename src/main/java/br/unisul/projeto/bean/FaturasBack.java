@@ -123,17 +123,18 @@ public class FaturasBack implements Serializable {
 			
 			f.setFat_status("Pago");
 			
+			
 			//paga atual
 			dao.salvar(f);
 			
 			
 			// salva cliente atual - backup
-			Faturas b = f;
+			Faturas nova = f.clonaFatura();
 			
 			f = new Faturas();
 						
 			// valorFatura - valorPago
-			f.setFat_valor(b.getFat_valor() - b.getFat_valorPago());
+			f.setFat_valor(nova.getFat_valor() - nova.getFat_valorPago());
 					
 			// status não pago da nova fatura
 			f.setFat_status("Não pago");
@@ -142,12 +143,12 @@ public class FaturasBack implements Serializable {
 			f.setFat_valorPago(null);
 			f.setFat_dataPago(null);
 			
-			f.setFat_data(b.getFat_data());
+			f.setFat_data(nova.getFat_data());
 			
 			dao.salvar(f);
 			
 			// salva
-			novo();
+			// novo();
 
 			Messages.addGlobalInfo("Fatura PAGA com sucesso");
 			
