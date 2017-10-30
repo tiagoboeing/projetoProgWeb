@@ -1,47 +1,81 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	template="../index.xhtml">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<ui:define name="telas">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastro de faturas</title>
+</h:head>
+
+<h:body>
+
 
 	<p:growl id="msg" />
 	<h:form id="frmTab">
+	
 		<h1>Cadastro de Faturas</h1>
+		
 		<!-- <p:panel header="Faturas"> -->
 		<p:panel>
 
-			<p:dataTable emptyMessage="Sem registros" paginator="true"
-				value="#{faturasBack.listaFaturas}" var="fatura" rows="30"
-				id="table">
+			<p:dataTable emptyMessage="Sem registros" paginator="true" 
+			value="#{faturasBack.listaFaturas}" var="fatura" rows="30" id="table" sortBy="#{faturasBack.f.fat_id}" sortOrder="descending">
 
 				<f:facet name="header">
 					<p:commandButton value="Novo" actionListener="#{faturasBack.novo}"
 						oncomplete="PF('dlg').show();" update=":frmCad:telaCad :msg" />
 				</f:facet>
 
-				<p:column headerText="Cliente" sortBy="#{fatura.cli_nome.cli_nome}"
-					filterBy="#{fatura.cli_nome.cli_nome}">
+				
+				<!-- ID FATURA -->
+				<!-- filterBy="#{fatura.fat_id}" -->
+				<p:column headerText="#ID" sortBy="#{fatura.fat_id}" width="100">
+					<h:outputText value="# #{fatura.fat_id}" />
+				</p:column>
+
+
+				<p:column headerText="Cliente" sortBy="#{fatura.cli_nome.cli_nome}">
 					<h:outputText
 						value="#{fatura.cli_nome.cli_nome} #{fatura.cli_nome.cli_sobrenome}" />
 				</p:column>
+				
 
 				<!-- DATA DA FATURA -->
-				<!-- <p:column headerText="Data" sortBy="#{fatura.fat_data}"
-					filterBy="#{fatura.fat_data}">
+				<p:column headerText="Data da fatura" sortBy="#{fatura.fat_data}" width="100">
 					<h:outputText value="#{fatura.fat_data}" />
-				</p:column>-->
+				</p:column>
+				
 
 				<!-- VALOR DA FATURA -->
-				<p:column headerText="Valor R$" sortBy="#{fatura.fat_valor}"
-					filterBy="#{fatura.fat_valor}">
+				<p:column headerText="Valor R$" sortBy="#{fatura.fat_valor}" width="100">
 					<h:outputText value="R$ #{fatura.fat_valor}" />
 				</p:column>
+				
+				
+				<!-- DATA DE PAGAMENTO -->
+				<p:column headerText="Data de pagamento" sortBy="#{fatura.fat_dataPago}" width="150">
+					<h:outputText value="#{fatura.fat_dataPago}" />
+				</p:column>
+				
+				
+				<!-- VALOR PAGO -->
+				<p:column headerText="Valor pago R$" sortBy="#{fatura.fat_valorPago}" width="150">
+					<h:outputText value="R$ #{fatura.fat_valorPago}" />
+				</p:column>
+				
+				
+				<!-- STATUS DA FATURA -->
+				<p:column headerText="Status" sortBy="#{fatura.fat_status}">
+					<h:outputText value="#{fatura.fat_status}" />
+				</p:column>
+				
+				
 
 				<p:column headerText="Opções">
 
@@ -67,7 +101,7 @@
 
 					<!-- PAGAR FATURA -->
 					<p:commandButton icon="ui-icon-dollar" oncomplete="PF('pagar').show();"
-						actionListener="#{faturasBack.pagarFatura}"	update=":formPagarFatura:telaPagar :msg" 
+						actionListener="#{faturasBack.pagarFatura}"	update=":formPagarFatura:telaPagar" 
 						value="Pagar fatura" style="background: green; color: #fff;">
 						<f:attribute name="pagarFatura" value="#{fatura}" />
 					</p:commandButton>
@@ -113,20 +147,12 @@
 
 				<p:inputText filter="true" value="#{faturasBack.f.fat_valor}" />
 
-				<!-- TENTANDO FAZER COM QUE A DATA APAREÇA AUTOMATICAMENTE -->
-				<!-- <p:calendar id="di" value="#{processoBean.processo.datahoraInicio}"
-            					required="true" 
-            					requiredMessage="Data Início Obrigatório"
-           			 			pattern="dd/MM/yyyy HH:mm" />  -->
-
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar" onclick="PF('dlg').hide();"
 					actionListener="#{faturasBack.salvar}"
 					update=":msg :frmCad:telaCad :frmTab:table" />
-
-
 
 				<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();" />
 			</h:panelGrid>
@@ -141,10 +167,8 @@
 		
 		<h:form id="formPagarFatura">
 			
-			
-			<!-- INPUTS -->
 			<h:panelGrid columns="2" id="telaPagar">
-
+			
 				<p:outputLabel value="Valor pago" />
 				<p:inputText filter="true" value="#{faturasBack.f.fat_valorPago}" />
 
@@ -174,5 +198,5 @@
 		
 	</p:dialog>
 
-	</ui:define>
-</ui:composition>
+</h:body>
+</html>
