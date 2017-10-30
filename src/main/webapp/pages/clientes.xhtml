@@ -150,18 +150,53 @@
 								actionListener="#{clienteBack.salvar}" update=":msg"/>
 								
 							<!-- CADASTRO NOME, SOBRENOME  -->	
-								
+							
+							<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+						        <p:outputLabel for="tipoConta" value="Tipo de conta: " />
+						        <p:selectOneRadio id="tipoConta" value="#{clienteBack.cliente.cli_tipoconta}">
+						            <f:selectItem itemLabel="Pessoa física" itemValue="F" />
+						            <f:selectItem itemLabel="Pessoa jurídica" itemValue="J" />
+						        </p:selectOneRadio>
+						    </h:panelGrid>
+						    
+							
 							<p:outputLabel value="Nome:" for="txtNome" />
-
 							<p:inputText id="txtNome" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_nome}" required="true"
-								requiredMessage="Nome obrigatório" />
+								value="#{clienteBack.cliente.cli_nome}" required="false"/>
 
 							<p:outputLabel value="Sobrenome:" for="txtSobrenome" />
 							<p:inputText id="txtSobrenome" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_sobrenome}" required="true"
-								requiredMessage="Sobrenome obrigatório" />
-							
+								value="#{clienteBack.cliente.cli_sobrenome}" required="false"/>
+								
+							<p:outputLabel value="Empresa" for="txtEmpresa" />
+							<p:inputText id="txtEmpresa" maxlength="50" size="30"
+								value="#{clienteBack.cliente.cli_empresa}" required="false"/>
+								
+							<p:outputLabel value="Razão social" for="txtRazaoSocial" />
+							<p:inputText id="txtRazaoSocial" maxlength="50" size="30"
+								value="#{clienteBack.cliente.cli_razaosocial}" required="false"/>
+								
+							<p:outputLabel value="CPF" for="txtCpf" />
+							<p:inputText id="txtCpf" maxlength="50" size="30"
+								value="#{clienteBack.cliente.cli_cpf}" required="false"/>
+								
+							<p:outputLabel value="RG" for="txtRg" />
+							<p:inputText id="txtRg" maxlength="50" size="30"
+								value="#{clienteBack.cliente.cli_rg}" required="false"/>
+								
+							<p:outputLabel value="CNPJ" for="txtCnpj" />
+							<p:inputText id="txtCnpj" maxlength="50" size="30"
+								value="#{clienteBack.cliente.cli_cnpj}" required="false"/>
+								
+							<p:outputLabel value="Email" for="txtEmail" />
+							<p:inputText id="txtEmail" maxlength="50" size="30"
+								value="#{clienteBack.cliente.cli_email}" required="false"/>
+								
+							<p:outputLabel value="Data nasc." for="DataNasc" />							
+							<p:calendar id="DataNasc" value="#{clienteBack.cliente.cli_dtnasc}">
+					            <p:ajax event="dateSelect" listener="#{clienteBack.cliente.cli_dtnasc}" update="" />
+					        </p:calendar>
+		
 							
 						</h:panelGrid>
 
@@ -180,6 +215,7 @@
 
 					<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();"
 						style="background: red; color: #fff; border: none;" />
+						
 				</h:panelGrid>
 
 			</h:form>

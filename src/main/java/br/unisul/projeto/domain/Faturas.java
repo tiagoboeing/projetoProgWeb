@@ -108,6 +108,22 @@ public class Faturas implements Serializable {
 	}
 
 	
+	public Faturas clonaFatura() {
+		
+		Faturas fatNova = new Faturas();
+		
+		fatNova.setFat_id(getFat_id());
+		fatNova.setCli_nome(getCli_nome());
+		fatNova.setFat_data(getFat_data());
+		fatNova.setFat_dataPago(getFat_dataPago());
+		fatNova.setFat_status(getFat_status());
+		fatNova.setFat_valor(getFat_valor());
+		fatNova.setFat_valorPago(getFat_valorPago());
+		
+		return fatNova;
+		
+	}
+	
 	
 	public String getFat_data() {
 		return fat_data;
