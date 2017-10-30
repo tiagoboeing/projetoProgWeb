@@ -1,10 +1,8 @@
 package br.unisul.projeto.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
@@ -59,7 +57,7 @@ public class FaturasBack implements Serializable {
 	public void novo() {
 
 		f = new Faturas();
-		carregaClientes();
+		carregaFaturas();
 
 	}
 
@@ -70,10 +68,15 @@ public class FaturasBack implements Serializable {
 
 			// status padrão
 			f.setFat_status("Não pago");
+					
+			// data padrão - HOJE
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			LocalDate localDate = LocalDate.now();
 			
+			String dataPadrao = dtf.format(localDate);	
+			f.setFat_data(dataPadrao);
 			
-			f.setFat_data();
-			
+			// salva
 			dao.salvar(f);
 
 			Messages.addGlobalInfo("Fatura cadastrada com sucesso");
@@ -94,7 +97,7 @@ public class FaturasBack implements Serializable {
 		// dao.alterar(cidade);
 		// cidades = (ArrayList<Cidade>)dao.listarTodos();
 		
-		carregaClientes();
+		carregaFaturas();
 		listar();
 
 	}
@@ -105,24 +108,99 @@ public class FaturasBack implements Serializable {
 		FaturasDao dao = new FaturasDao();
 		dao.excluir(f);
 		listaFaturas = (ArrayList<Faturas>) dao.listarTodasFaturas();
-		carregaClientes();
+		carregaFaturas();
 		listar();
 	}
 	
 	
 	// SALVAR VALOR PAGO
 	public void pagarFatura(ActionEvent evt) {
+	
+		try {
+			
+			f = (Faturas) evt.getComponent().getAttributes().get("pagarFatura");
+			FaturasDao dao = new FaturasDao();
+			
+			f.setFat_status("Pago");
+			
+			//paga atual
+			dao.salvar(f);
+			
+			
+			// salva cliente atual - backup
+			Faturas b = f;
+			
+			f = new Faturas();
+						
+			// valorFatura - valorPago
+			f.setFat_valor(b.getFat_valor() - b.getFat_valorPago());
+					
+			// status não pago da nova fatura
+			f.setFat_status("Não pago");
+			
+			// ainda não foi paga - null
+			f.setFat_valorPago(null);
+			f.setFat_dataPago(null);
+			
+			f.setFat_data(b.getFat_data());
+			
+			dao.salvar(f);
+			
+			// salva
+			novo();
+
+			Messages.addGlobalInfo("Fatura PAGA com sucesso");
+			
+			carregaFaturas();
+			listar();
+
+		} catch (Exception e) {
+			Messages.addGlobalInfo("Erro ao pagar fatura");
+			e.printStackTrace();
+		}
 		
-		f = (Faturas) evt.getComponent().getAttributes().get("pagarFatura");
-		FaturasDao dao = new FaturasDao();
+
+		/*
+			dao.pagarFatura(f);
+		*/
+			// armazena valores por segurança
+/*			Double valorPago = f.getFat_valorPago();
+			String dataPago = f.getFat_dataPago();
+			Double valor = f.getFat_valor();
+			Cliente cliente = f.getCli_nome();
+		
+			f.setFat_valorPago(null);
+			f.setFat_dataPago(null);
+		
 		dao.pagarFatura(f);
+
 		
-		Messages.addGlobalInfo("Fatura paga com sucesso");
-		novo();
-		listar();
+			f.setFat_id(null);
+			
+			// cria fatura com valor restante
+			f.setFat_valor(valor - valorPago);
+			
+			//define data de pagamento vazia - não pago
+			f.setFat_dataPago(dataPago);
+			
+			// status padrão para nova fatura
+			f.setFat_status("Não pago");
+			
+			// define valor pago como vazio
+			f.setFat_valorPago(null);
+			
+			// define cliente novamente
+			f.setCli_nome(cliente);
+
+		novo();*/
+		
+		//Messages.addGlobalInfo("Fatura paga com sucesso");
+		
+		
+		// lista novamente todos os registros
+		
 		
 	}
-	
 	
 	
 
@@ -132,7 +210,7 @@ public class FaturasBack implements Serializable {
 	// carregaUfs();
 	// }
 
-	private void carregaClientes() {
+	private void carregaFaturas() {
 		try {
 			ClienteDao dao = new ClienteDao();
 			clientes = (ArrayList<Cliente>) dao.listarTodos();

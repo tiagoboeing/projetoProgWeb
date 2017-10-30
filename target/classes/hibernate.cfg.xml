@@ -29,10 +29,13 @@
 		<!-- Mostra as SQLs Geradas -->
 		<!-- em desenvolvimento se coloca true, para mostrar no console -->
 		<property name="show_sql">true</property>
+		
+		<property name="format_sql">true</property>
 
 		<!-- Cria as tabelas do banco de dados - (create) colocar para validate 
 			quando finalizar a programação -->
-		<property name="hbm2ddl.auto">validate</property>
+		<property name="hbm2ddl.auto">update</property>
+
 
 		<!-- Mapeamento das entidades -->
 		<mapping class="br.unisul.projeto.domain.Estado" />
