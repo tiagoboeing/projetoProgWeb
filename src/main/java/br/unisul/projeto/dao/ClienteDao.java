@@ -11,13 +11,13 @@ import br.unisul.projeto.util.HibernateUtil;
 
 public class ClienteDao {
 
-	public void alterarCliente(Cliente c) {
+	public void alterarCliente(Cliente cliente) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction t = null;
 
 		try {
 			t = sessao.beginTransaction();
-			sessao.merge(c);
+			sessao.merge(cliente);
 			t.commit();
 
 		} catch (Exception e) {
@@ -32,13 +32,13 @@ public class ClienteDao {
 		}
 	}
 
-	public void excluir(Cliente c) {
+	public void excluir(Cliente cliente) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction t = null;
 
 		try {
 			t = sessao.beginTransaction();
-			sessao.delete(c);
+			sessao.delete(cliente);
 			t.commit();
 
 		} catch (Exception e) {
@@ -60,7 +60,6 @@ public class ClienteDao {
 		try {
 			Criteria consulta = sessao.createCriteria(Cliente.class);
 			List<Cliente> resultado = consulta.list();
-
 			return resultado;
 
 		} catch (Exception e) {
@@ -72,13 +71,13 @@ public class ClienteDao {
 		}
 	}
 
-	public void salvarCliente(Cliente c) {
+	public void salvarCliente(Cliente cliente) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction t = null;
 
 		try {
 			t = sessao.beginTransaction();
-			sessao.merge(c);
+			sessao.merge(cliente);
 			t.commit();
 
 		} catch (Exception e) {
@@ -93,14 +92,14 @@ public class ClienteDao {
 		}
 	}
 
-	public Cliente salvar(Cliente cli) {
+	public Cliente salvar(Cliente cliente) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction t = null;
 		Cliente novo = null;
 
 		try {
 			t = sessao.beginTransaction();
-			novo = (Cliente) sessao.merge(cli);
+			novo = (Cliente) sessao.merge(cliente);
 			t.commit();
 
 		} catch (Exception e) {

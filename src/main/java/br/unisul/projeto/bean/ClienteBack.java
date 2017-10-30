@@ -25,10 +25,10 @@ import br.unisul.projeto.domain.Cliente;
 
 public class ClienteBack implements Serializable {
 
-	private Cliente c = new Cliente();
+	//private Cliente c = new Cliente();
 	private ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
 
-	Cliente cli = new Cliente();
+	Cliente cliente = new Cliente();
 
 	@PostConstruct
 	public void listar() {
@@ -47,10 +47,10 @@ public class ClienteBack implements Serializable {
 
 	public void edita(ActionEvent evt) {
 
-		c = (Cliente) evt.getComponent().getAttributes().get("idAlterar");
+		cliente = (Cliente) evt.getComponent().getAttributes().get("idAlterar");
 		ClienteDao dao = new ClienteDao();
 
-		dao.alterarCliente(c);
+		dao.alterarCliente(cliente);
 
 		listaClientes = (ArrayList<Cliente>) dao.listarTodos();
 
@@ -61,27 +61,15 @@ public class ClienteBack implements Serializable {
 		//
 		// Messages.addGlobalInfo(estado.getNomeEstado() + "-" + estado.getUfEstado());
 
-		c = (Cliente) evt.getComponent().getAttributes().get("idExcluir");
+		cliente = (Cliente) evt.getComponent().getAttributes().get("idExcluir");
 		ClienteDao dao = new ClienteDao();
-		dao.excluir(c);
+		dao.excluir(cliente);
 
 		listaClientes = (ArrayList<Cliente>) dao.listarTodos();
 		// Messages.addGlobalInfo(estado.getNome() + "-" + estado.getUf());
 	}
 
-	public void cadastra() {
-
-		ClienteDao dao = new ClienteDao();
-		dao.salvarCliente(c);
-
-		// System.out.println(estado.getNome() + " - " + estado.getUf());
-		// Messages.addGlobalInfo(c.getCli_nome() + " - " + c.getCli_sobrenome());
-		Messages.addGlobalInfo("Cliente cadastrado com sucesso");
-
-		listaClientes = (ArrayList<Cliente>) dao.listarTodos();
-		c = new Cliente();
-
-	}
+	
 
 	public void upload(FileUploadEvent evento) {
 
@@ -92,23 +80,37 @@ public class ClienteBack implements Serializable {
 			Path t = Files.createTempFile(null, null);
 			Files.copy(x.getInputstream(), t, StandardCopyOption.REPLACE_EXISTING);
 
-			cli.setPathTemp(t.toString());
+			cliente.setPathTemp(t.toString());
 
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 
-		Messages.addGlobalInfo(cli.getPathTemp());
+		Messages.addGlobalInfo(cliente.getPathTemp());
 
 	}
 
+	public void cadastra() {
+
+		ClienteDao dao = new ClienteDao();
+		dao.salvarCliente(cliente);
+
+		// System.out.println(estado.getNome() + " - " + estado.getUf());
+		// Messages.addGlobalInfo(c.getCli_nome() + " - " + c.getCli_sobrenome());
+		Messages.addGlobalInfo("Cliente cadastrado com sucesso");
+
+		listaClientes = (ArrayList<Cliente>) dao.listarTodos();
+		cliente = new Cliente();
+
+	}
+	
 	public void salvar() {
 
 		ClienteDao dao = new ClienteDao();
-		Cliente clidn = dao.salvar(cli);
+		Cliente clidn = dao.salvar(cliente);
 
-		Path origem = Paths.get(cli.getPathTemp());
-		Path destino = Paths.get("C:/produtos_imagens_Pweb2017/" + clidn.getCli_id() + ".png");
+		Path origem = Paths.get(cliente.getPathTemp());
+		Path destino = Paths.get("C:/pweb2017_imagens/" + clidn.getCli_id() + ".png");
 
 		try {
 
@@ -119,17 +121,26 @@ public class ClienteBack implements Serializable {
 		}
 
 		Messages.addGlobalInfo("Cliente cadastrado com sucesso");
-		cli = new Cliente();
+		//listaClientes = (ArrayList<Cliente>) dao.listarTodos();
+		cliente = new Cliente();
 
 	}
 
-	public Cliente getC() {
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	/*public Cliente getC() {
 		return c;
 	}
 
 	public void setC(Cliente c) {
 		this.c = c;
-	}
+	}*/
 
 	public ArrayList<Cliente> getListaClientes() {
 		return listaClientes;

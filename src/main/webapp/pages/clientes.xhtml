@@ -43,13 +43,11 @@
 						<p:commandButton value="Novo" oncomplete="PF('dlg').show();" />
 					</f:facet>
 
-
-
 					<p:column headerText="Cliente"
 						sortBy="#{cliente.cli_nome} #{cliente.cli_sobrenome}"
 						filterBy="#{cliente.cli_nome} #{cliente.cli_sobrenome}">
 						<h:outputText value="#{cliente.cli_nome} #{cliente.cli_sobrenome}" />
-					</p:column>
+					</p:column> -->
 
 					<!-- <p:column headerText="Empresa"
 						sortBy="#{cliente.cli_empresa} #{cliente.cli_razaosocial}"
@@ -109,7 +107,7 @@
 
 			<h:form id="formCadastro">
 
-				<h:panelGrid id="pnlCad">
+				<h:panelGrid columns="1" id="pnlCad">
 
 					<!-- LAYOUT DA TELA DE CADASTRO -->
 					<!-- <p:layout style="min-width:400px;min-height:200px;">
@@ -123,7 +121,7 @@
 							    </p:layoutUnit>
 					</p:layout> -->
 
-					<div class="ui-g-12 ui-md-3 ui-lg-3">
+					<!--<div class="ui-g-12 ui-md-3 ui-lg-3">-->
 
 						<!-- <p:outputLabel for="tipoConta" value="Tipo de conta:" />
 
@@ -132,40 +130,41 @@
 								<f:selectItem itemLabel="Pessoa jurídica" itemValue="J" />
 							</p:selectOneRadio> -->
 
-					</div>
+					<!--</div>-->
 
-					<div class="ui-g-12 ui-md-9 ui-lg-9">
+					<!--<div class="ui-g-12 ui-md-9 ui-lg-9">-->
 
-						<h:panelGrid columns="1">
+						<!--<h:panelGrid columns="1">-->
 
-							<!-- CADASTRAR IMAGEM  -->
 							
-							<p:outputLabel value="Imagem" />
 
-							<!-- auto="false" -->
-							<p:fileUpload auto="true" id="fileUp" mode="advanced"
-								fileUploadListener="#{clienteBack.upload}" update=":msg" />
-
-							<p:commandButton value="Salvar imagem"
-								actionListener="#{clienteBack.salvar}" update=":msg"/>
+							 	
 								
 							<!-- CADASTRO NOME, SOBRENOME  -->	
 								
 							<p:outputLabel value="Nome:" for="txtNome" />
 
-							<p:inputText id="txtNome" maxlength="50" size="30"
-								value="#{clienteBack.c.cli_nome}" required="true"
-								requiredMessage="Nome obrigatório" />
+							<p:inputText id="txtNome" maxlength="50" size="30" value="#{clienteBack.cliente.cli_nome}" required="true" requiredMessage="Nome obrigatório" />
 
 							<p:outputLabel value="Sobrenome:" for="txtSobrenome" />
-							<p:inputText id="txtSobrenome" maxlength="50" size="30"
-								value="#{clienteBack.c.cli_sobrenome}" required="true"
-								requiredMessage="Sobrenome obrigatório" />
+							<p:inputText id="txtSobrenome" maxlength="50" size="30" value="#{clienteBack.cliente.cli_sobrenome}" required="true" requiredMessage="Sobrenome obrigatório" />
+								
+							<!-- CADASTRAR IMAGEM  -->
+							
+							<p:outputLabel value="Imagem" />
+
+							<!-- auto="false" -->
+							<p:fileUpload auto="true" id="fileUp" mode="advanced" fileUploadListener="#{clienteBack.upload}" update=":msg" />	
+								
+							<!--<p:commandButton value="Salvar cliente" actionListener="#{clienteBack.salvar}"/>-->
+							
+							
+							
 							
 
-						</h:panelGrid>
+						<!--</h:panelGrid>-->
 
-					</div>
+					<!--</div>-->
 
 					<!-- FECHA LAYOUT DA TELA DE CADASTRO -->
 				</h:panelGrid>
@@ -173,14 +172,11 @@
 
 				<h:panelGrid columns="2" style="float: right;">
 
-					<p:commandButton value="Salvar cliente"
-						actionListener="#{clienteBack.cadastra}"
-						update="formCadastro:pnlCad msg formCliente:tbl"
-						onclick="PF('dlg').hide();" />
+					 <p:commandButton value="Salvar cliente" actionListener="#{clienteBack.salvar}" update="formCadastro:pnlCad msg formCliente:tbl" onclick="PF('dlg').hide();"/>  
+						
 
-					<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();"
-						style="background: red; color: #fff; border: none;" />
-				</h:panelGrid>
+					<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();" style="background: red; color: #fff; border: none" />
+				</h:panelGrid> 
 
 			</h:form>
 
