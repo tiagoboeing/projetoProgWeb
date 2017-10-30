@@ -34,17 +34,14 @@
 						<p:commandButton value="Novo" oncomplete="PF('dlg').show();" />
 					</f:facet>
 
-					<p:column headerText="Descrição"
-						sortBy="#{produto.pro_nome}"
+					<p:column headerText="Descrição" sortBy="#{produto.pro_nome}"
 						filterBy="#{produto.pro_nome}">
 						<h:outputText value="#{produto.pro_nome}" />
 					</p:column>
 
-					<p:column headerText="Valor"
-						sortBy="#{produto.pro_valor}"
+					<p:column headerText="Valor" sortBy="#{produto.pro_valor}"
 						filterBy="#{produto.pro_valor}">
-						<h:outputText
-							value="#{produto.pro_valor}" />
+						<h:outputText value="#{produto.pro_valor}" />
 					</p:column>
 
 					<p:column headerText="Opções">

@@ -28,10 +28,14 @@ body {
 	padding: 0;
 }
 
-.container{
+.container {
 	margin: 20px auto !important;
 }
 
 .clear {
 	clear: both;
+}
+
+.divLogo {
+	padding-bottom: 1px;
 }
