@@ -97,6 +97,7 @@ public class FaturasDao {
 	}
 
 	public void salvar(Faturas f) {
+		
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction t = null;
 

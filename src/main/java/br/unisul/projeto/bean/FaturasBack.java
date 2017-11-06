@@ -73,6 +73,7 @@ public class FaturasBack implements Serializable {
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 			LocalDate localDate = LocalDate.now();
 			
+			
 			String dataPadrao = dtf.format(localDate);	
 			f.setFat_data(dataPadrao);
 			
@@ -121,31 +122,35 @@ public class FaturasBack implements Serializable {
 			f = (Faturas) evt.getComponent().getAttributes().get("pagarFatura");
 			FaturasDao dao = new FaturasDao();
 			
+			Faturas f = new Faturas();
+			
 			f.setFat_status("Pago");
 			
+			f.setFat_dataPago("HOJE");
+			
+			f.setFat_valorPago(f.getFat_valorPago());
 			
 			//paga atual
 			dao.salvar(f);
-			
-			
-			// salva cliente atual - backup
-			Faturas nova = f.clonaFatura();
-			
-			f = new Faturas();
-						
-			// valorFatura - valorPago
-			f.setFat_valor(nova.getFat_valor() - nova.getFat_valorPago());
-					
-			// status não pago da nova fatura
-			f.setFat_status("Não pago");
-			
-			// ainda não foi paga - null
-			f.setFat_valorPago(null);
-			f.setFat_dataPago(null);
-			
-			f.setFat_data(nova.getFat_data());
-			
-			dao.salvar(f);
+//			
+//			
+//			// salva cliente atual - backup
+//			//Faturas nova = f.clonaFatura(f);
+//			
+//		
+//			// valorFatura - valorPago
+//			f.setFat_valor(f.getFat_valor() - f.getFat_valorPago());
+//					
+//			// status não pago da nova fatura
+//			f.setFat_status("Não pago");
+//			
+//			// ainda não foi paga - null
+//			f.setFat_valorPago(null);
+//			f.setFat_dataPago(null);
+//			
+//			f.setFat_data(f.getFat_data());
+//			
+//			dao.salvar(f);
 			
 			// salva
 			// novo();
