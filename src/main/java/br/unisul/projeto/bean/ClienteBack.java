@@ -121,6 +121,7 @@ public class ClienteBack implements Serializable {
 		}
 
 		Messages.addGlobalInfo("Cliente cadastrado com sucesso");
+		
 		//listaClientes = (ArrayList<Cliente>) dao.listarTodos();
 		cliente = new Cliente();
 
