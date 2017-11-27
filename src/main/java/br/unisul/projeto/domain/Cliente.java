@@ -52,7 +52,7 @@ public class Cliente implements Serializable {
 	private String cli_observacoes;
 
 	@Column(length = 1)
-	private Integer cli_status;
+	private String cli_status;
 
 	@Column(length = 1)
 	private String cli_tipoconta;
@@ -285,11 +285,11 @@ public class Cliente implements Serializable {
 		this.cli_observacoes = cli_observacoes;
 	}
 
-	public Integer getCli_status() {
+	public String getCli_status() {
 		return cli_status;
 	}
 
-	public void setCli_status(Integer cli_status) {
+	public void setCli_status(String cli_status) {
 		this.cli_status = cli_status;
 	}
 

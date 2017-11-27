@@ -108,17 +108,27 @@ public class Faturas implements Serializable {
 	}
 
 	
-	public Faturas clonaFatura() {
+	public Faturas clonaFatura(Faturas fat) {
 		
+		//copia dados atuais
+		String idFatura = fat.getFat_id()+"";
+		Cliente clienteIdFatura = fat.getCli_nome();
+		String dataFatura = fat.getFat_data();
+		String dataPago = fat.getFat_dataPago();
+		String statusFatura = fat.getFat_status();
+		Double valorFatura = fat.getFat_valor();
+		Double valorPago = fat.getFat_valorPago();
+		
+		// define novos valores para fatura clonada
 		Faturas fatNova = new Faturas();
 		
-		fatNova.setFat_id(getFat_id());
-		fatNova.setCli_nome(getCli_nome());
-		fatNova.setFat_data(getFat_data());
-		fatNova.setFat_dataPago(getFat_dataPago());
-		fatNova.setFat_status(getFat_status());
-		fatNova.setFat_valor(getFat_valor());
-		fatNova.setFat_valorPago(getFat_valorPago());
+		fatNova.setFat_id(Long.parseLong(idFatura));
+		fatNova.setCli_nome(clienteIdFatura);
+		fatNova.setFat_data(dataFatura);
+		fatNova.setFat_dataPago(dataPago);
+		fatNova.setFat_status(statusFatura);
+		fatNova.setFat_valor(valorFatura);
+		fatNova.setFat_valorPago(valorPago);
 		
 		return fatNova;
 		

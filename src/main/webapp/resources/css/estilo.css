@@ -36,6 +36,10 @@ body {
 	clear: both;
 }
 
-.divLogo {
-	padding-bottom: 1px;
+@media (max-width: 400px){
+	.logomarca{}
+	.logomarca img{
+		width: 280px;	
+	}
 }
+

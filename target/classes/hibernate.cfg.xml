@@ -38,10 +38,11 @@
 
 
 		<!-- Mapeamento das entidades -->
-		<mapping class="br.unisul.projeto.domain.Estado" />
+		<!-- <mapping class="br.unisul.projeto.domain.Estado" /> -->
 		<mapping class="br.unisul.projeto.domain.Cliente" />
 		<mapping class="br.unisul.projeto.domain.Faturas" />
 		<mapping class="br.unisul.projeto.domain.Usuario" />
+		<mapping class="br.unisul.projeto.domain.Sistema" />
 
 	</session-factory>
 

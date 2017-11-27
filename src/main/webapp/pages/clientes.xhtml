@@ -1,35 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	template="/root/principal.xhtml">
-	
-<!--	<h:head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Cadastro de faturas</title>
-	</h:head> -->
-	
+	template="../root/principal.xhtml">
 
-<!-- <ui:define name="telas"> -->
 
-<!--<h:body>
-
-	<div class="container">
-
-		<h1>Cadastro de Clientes</h1>-->
-
-		<!-- PAINEL DE LISTAGEM -->
-		<!--<p:growl id="msg" />
-		<h:form id="formCliente">
-
-			<p:panel>-->
-
-<ui:define name="telas">
+<ui:define name="conteudo">
 		
 		<h:form id="formCliente"> 
 
@@ -40,7 +21,7 @@
 					rows="100" paginatorPosition="bottom">
 
 					<f:facet name="header">
-						<p:commandButton value="Novo" oncomplete="PF('dlg').show();" />
+						<p:commandButton value="Novo" onclick="PF('dlg').show();" type="button" />
 					</f:facet>
 
 
@@ -51,40 +32,38 @@
 						<h:outputText value="#{cliente.cli_nome} #{cliente.cli_sobrenome}" />
 					</p:column>
 
-					<!-- <p:column headerText="Empresa"
+
+					<p:column headerText="Empresa"
 						sortBy="#{cliente.cli_empresa} #{cliente.cli_razaosocial}"
 						filterBy="#{cliente.cli_empresa} #{cliente.cli_razaosocial}">
 						<h:outputText
 							value="#{cliente.cli_empresa} - #{cliente.cli_razaosocial}" />
-					</p:column>  -->
+					</p:column>
+					
+					
+					<p:column headerText="Status" filterBy="#{cliente.cli_status}">
+						<h:outputText value="#{cliente.cli_status}" />
+					</p:column>
 
-					<!-- SALDO DO CLIENTE -->
-					<!-- <p:column headerText="Saldo R$"
-						sortBy="#{cliente.cli_saldo}">
-						<h:outputText
-							value="#{cliente.cli_saldo}" />
-					</p:column> -->
 
-					<p:column headerText="Opções">
-
-						<!-- EXCLUIR -->
-						<p:commandButton icon="ui-icon-trash"
-							actionListener="#{clienteBack.exclui}"
-							update="formCliente:tbl msg">
-
-							<p:confirm header="Confirmação" message="Excluir cliente?"
-								icon="ui-icon-alert" />
-							<f:attribute name="idExcluir" value="#{cliente}" />
-						</p:commandButton>
-
+					<p:column headerText="Opções" width="130">
 
 						<!-- EDITAR -->
-						<p:commandButton icon="ui-icon-pencil"
+						<p:commandButton icon="ui-icon-pencil" label="Alterar"
 							oncomplete="PF('dlg').show();" update="formCadastro:pnlCad"
 							actionListener="#{clienteBack.edita}">
 							<f:attribute name="idAlterar" value="#{cliente}" />
 						</p:commandButton>
-
+						
+						
+						<!-- EXCLUIR -->
+						<p:commandButton icon="ui-icon-trash" actionListener="#{clienteBack.exclui}" update="formCliente:tbl msg" style="background: #990000; border:0;">
+							<p:confirm header="Confirmação" message="Excluir cliente?"
+								icon="ui-icon-alert" />
+							<f:attribute name="idExcluir" value="#{cliente}" />
+						</p:commandButton>
+						
+						
 					</p:column>
 
 				</p:dataTable>
@@ -104,103 +83,103 @@
 
 		<!-- CADASTRO DE CLIENTE -->
 		<p:dialog header="Cadastro de cliente" widgetVar="dlg"
-			resizable="false" draggable="false" modal="true" closable="true"
-			width="80%">
+			resizable="false" draggable="false" modal="true" appendToBody="true" closable="true" width="50%" styleClass="customDialog">
 
 			<h:form id="formCadastro">
-
-				<h:panelGrid id="pnlCad">
-
-					<!-- LAYOUT DA TELA DE CADASTRO -->
-					<!-- <p:layout style="min-width:400px;min-height:200px;">
-						<p:layoutUnit position="west" resizable="true" size="100"
-							minSize="40" maxSize="200">
-							        West
-							    </p:layoutUnit>
-
-						<p:layoutUnit position="center">
-							        Center
-							    </p:layoutUnit>
-					</p:layout> -->
-
-					<div class="ui-g-12 ui-md-3 ui-lg-3">
-
-						<!-- <p:outputLabel for="tipoConta" value="Tipo de conta:" />
-
-							<p:selectOneRadio id="tipoConta" value="" layout="responsive" columns="1">
-								<f:selectItem itemLabel="Pessoa física" itemValue="F" />
-								<f:selectItem itemLabel="Pessoa jurídica" itemValue="J" />
-							</p:selectOneRadio> -->
-
+	
+			<h:panelGrid id="pnlCad">
+				
+				<div class="form-group row">
+					<label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+					<div class="col-sm-10">
+						<p:selectOneRadio id="tipoConta" value="#{clienteBack.cliente.cli_tipoconta}">
+				            <f:selectItem itemLabel="Pessoa física" itemValue="F" />
+				            <f:selectItem itemLabel="Pessoa jurídica" itemValue="J" />
+				        </p:selectOneRadio>
 					</div>
-
-					<div class="ui-g-12 ui-md-9 ui-lg-9">
-
-						<h:panelGrid columns="1">
-
-							<!-- CADASTRAR IMAGEM  -->
+				</div>
 							
-							<p:outputLabel value="Imagem" />
+				<br/>  	
+			  	
+			  	<!-- NOME E SOBRENOME -->
+			  	<h:panelGrid columns="2">
+			  		<p:inputText id="txtNome" class="form-control" maxlength="50" size="32" value="#{clienteBack.cliente.cli_nome}" required="false" placeholder="Nome"/>
+			  		
+			  		<p:inputText id="txtSobrenome" class="form-control" maxlength="50" size="32" value="#{clienteBack.cliente.cli_sobrenome}" required="false" placeholder="Sobrenome"/>
+			  	</h:panelGrid>
+			  	
+			  	<!-- CPF e RG -->
+			  	<h:panelGrid columns="2">
+			  		<p:inputText id="txtCpf" maxlength="50" size="30" value="#{clienteBack.cliente.cli_cpf}" required="false" placeholder="CPF"/>
+			  		
+			  		<p:inputText id="txtRg" maxlength="50" size="30" value="#{clienteBack.cliente.cli_rg}" required="false" placeholder="RG"/>
+			  	</h:panelGrid>
+			  	
+	
+				
+	
+				<div class="form-group row">
+					<label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+					<div class="col-sm-10">
+						
+					</div>
+				</div>
+		
+				<div class="form-group row">
+					<label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+					<div class="col-sm-10">
+						
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="inputPassword" placeholder="Password"/>
+					</div>
+				</div>
+	
 
-							<!-- auto="false" -->
-							<p:fileUpload auto="true" id="fileUp" mode="advanced"
-								fileUploadListener="#{clienteBack.upload}" update=":msg" />
+				
 
-							<p:commandButton value="Salvar imagem"
-								actionListener="#{clienteBack.salvar}" update=":msg"/>
+					<!-- LAYOUT DA TELA DE CADASTRO -->					
+
+
+						
 								
-							<!-- CADASTRO NOME, SOBRENOME  -->	
+							<!-- CAMPOS DE CADASTRO  -->							
 							
-							<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-						        <p:outputLabel for="tipoConta" value="Tipo de conta: " />
-						        <p:selectOneRadio id="tipoConta" value="#{clienteBack.cliente.cli_tipoconta}">
-						            <f:selectItem itemLabel="Pessoa física" itemValue="F" />
-						            <f:selectItem itemLabel="Pessoa jurídica" itemValue="J" />
-						        </p:selectOneRadio>
-						    </h:panelGrid>
-						    
-							
-							<p:outputLabel value="Nome:" for="txtNome" />
-							<p:inputText id="txtNome" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_nome}" required="false"/>
 
-							<p:outputLabel value="Sobrenome:" for="txtSobrenome" />
-							<p:inputText id="txtSobrenome" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_sobrenome}" required="false"/>
+							
 								
-							<p:outputLabel value="Empresa" for="txtEmpresa" />
 							<p:inputText id="txtEmpresa" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_empresa}" required="false"/>
+								value="#{clienteBack.cliente.cli_empresa}" required="false" placeholder="Empresa"/>
 								
-							<p:outputLabel value="Razão social" for="txtRazaoSocial" />
 							<p:inputText id="txtRazaoSocial" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_razaosocial}" required="false"/>
+								value="#{clienteBack.cliente.cli_razaosocial}" required="false" placeholder="Razão social"/>
 								
-							<p:outputLabel value="CPF" for="txtCpf" />
-							<p:inputText id="txtCpf" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_cpf}" required="false"/>
+							
 								
-							<p:outputLabel value="RG" for="txtRg" />
-							<p:inputText id="txtRg" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_rg}" required="false"/>
+							
 								
-							<p:outputLabel value="CNPJ" for="txtCnpj" />
 							<p:inputText id="txtCnpj" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_cnpj}" required="false"/>
+								value="#{clienteBack.cliente.cli_cnpj}" required="false" placeholder="CNPJ"/>
 								
-							<p:outputLabel value="Email" for="txtEmail" />
 							<p:inputText id="txtEmail" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_email}" required="false"/>
+								value="#{clienteBack.cliente.cli_email}" required="false" placeholder="E-mail"/>
 								
 							<p:outputLabel value="Data nasc." for="DataNasc" />							
 							<p:calendar id="DataNasc" value="#{clienteBack.cliente.cli_dtnasc}">
 					            <p:ajax event="dateSelect" listener="#{clienteBack.cliente.cli_dtnasc}" update="" />
 					        </p:calendar>
 		
-							
-						</h:panelGrid>
-
-					</div>
+							<h:form>		
+						        <p:selectOneButton value="#{clienteBack.cliente.cli_status}">
+						            <f:selectItem itemLabel="Ativada" itemValue="Ativada" />
+						            <f:selectItem itemLabel="Desativada" itemValue="Desativada" />
+						        </p:selectOneButton>
+							</h:form>
+					        
 
 					<!-- FECHA LAYOUT DA TELA DE CADASTRO -->
 				</h:panelGrid>
@@ -224,11 +203,8 @@
 		<!-- FECHA CADASTRO DE CLIENTE -->
 
 
-	<!-- </div>
-
-</h:body>
-</html> -->
 
 </ui:define>
 </ui:composition>
+
 	

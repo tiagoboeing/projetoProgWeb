@@ -61,6 +61,8 @@ public class FaturasBack implements Serializable {
 
 	}
 
+	
+	// ao criar nova
 	public void salvar() {
 
 		try {
@@ -72,6 +74,7 @@ public class FaturasBack implements Serializable {
 			// data padrão - HOJE
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 			LocalDate localDate = LocalDate.now();
+			
 			
 			String dataPadrao = dtf.format(localDate);	
 			f.setFat_data(dataPadrao);
@@ -120,32 +123,61 @@ public class FaturasBack implements Serializable {
 			
 			f = (Faturas) evt.getComponent().getAttributes().get("pagarFatura");
 			FaturasDao dao = new FaturasDao();
-			
-			f.setFat_status("Pago");
-			
+									
+			f.setFat_valorPago(f.getFat_valorPago());
+			Double valorPagamento = f.getFat_valorPago();
 			
 			//paga atual
-			dao.salvar(f);
+			dao.alterar(f);
 			
 			
-			// salva cliente atual - backup
-			Faturas nova = f.clonaFatura();
+				// CLONA CLIENTE
+				Faturas novaFatura = f.clonaFatura(f);
+				
+				
+				// INSTANCIA nova fatura com alguns dados da original
+				novo();
+				
+				//cliente permanece o mesmo
+				f.setCli_nome(novaFatura.getCli_nome());
+				
+				// a data permanece a original - de quando foi gerada
+				f.setFat_data(novaFatura.getFat_data());
+				
+				// subtrai valorFatura - valorPago = restante
+				Double valorRestante = novaFatura.getFat_valor() - valorPagamento;
+				
+				// não tem como ser negativo, se não quer dizer que foi pago a mais
+				if(valorRestante >= 0) { 
+					f.setFat_valor(valorRestante); 
+				} else {
+					Messages.addGlobalInfo("Opa, o valor pago é superior ao valor da fatura!");
+				}
+				
+				//define fatura nova como não pago
+				f.setFat_status("Não pago");
+				f.setFat_dataPago(null);
+				f.setFat_valorPago(null);
 			
-			f = new Faturas();
-						
-			// valorFatura - valorPago
-			f.setFat_valor(nova.getFat_valor() - nova.getFat_valorPago());
-					
-			// status não pago da nova fatura
-			f.setFat_status("Não pago");
-			
-			// ainda não foi paga - null
-			f.setFat_valorPago(null);
-			f.setFat_dataPago(null);
-			
-			f.setFat_data(nova.getFat_data());
-			
-			dao.salvar(f);
+//			
+//			
+//			// salva cliente atual - backup
+//			//Faturas nova = f.clonaFatura(f);
+//			
+//		
+//			// valorFatura - valorPago
+//			f.setFat_valor(f.getFat_valor() - f.getFat_valorPago());
+//					
+//			// status não pago da nova fatura
+//			f.setFat_status("Não pago");
+//			
+//			// ainda não foi paga - null
+//			f.setFat_valorPago(null);
+//			f.setFat_dataPago(null);
+//			
+//			f.setFat_data(f.getFat_data());
+//			
+//			dao.salvar(f);
 			
 			// salva
 			// novo();

@@ -90,6 +90,8 @@ public class ClienteBack implements Serializable {
 
 	}
 
+	
+	// NOVO
 	public void cadastra() {
 
 		ClienteDao dao = new ClienteDao();
@@ -110,8 +112,8 @@ public class ClienteBack implements Serializable {
 		Cliente clidn = dao.salvar(cliente);
 
 		Path origem = Paths.get(cliente.getPathTemp());
-		Path destino = Paths.get("C:/pweb2017_imagens/" + clidn.getCli_id() + ".png");
-
+		Path destino = Paths.get("C:/Users/tiagoboeing/Desktop/pweb/" + clidn.getCli_id() + ".png");
+		
 		try {
 
 			Files.copy(origem, destino, StandardCopyOption.REPLACE_EXISTING);
@@ -121,10 +123,17 @@ public class ClienteBack implements Serializable {
 		}
 
 		Messages.addGlobalInfo("Cliente cadastrado com sucesso");
+		
 		//listaClientes = (ArrayList<Cliente>) dao.listarTodos();
 		cliente = new Cliente();
 
 	}
+	
+	
+	
+
+	
+	
 
 	public Cliente getCliente() {
 		return cliente;
