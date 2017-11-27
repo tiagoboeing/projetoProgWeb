@@ -94,8 +94,7 @@
 
 					<!-- PAGAR FATURA -->
 					<p:commandButton icon="ui-icon-dollar" oncomplete="PF('pagar').show();"
-						actionListener="#{faturasBack.pagarFatura}"	update=":formPagarFatura:telaPagar" 
-						value="Pagar fatura" style="background: green; color: #fff;">
+						update=":formPagarFatura:telaPagar" actionListener="#{faturasBack.setarFatura}"	value="Pagar fatura" style="background: green; color: #fff;" rendered="#{faturasBack.checaPago()}">
 						<f:attribute name="pagarFatura" value="#{fatura}" />
 					</p:commandButton>
 					
@@ -165,10 +164,7 @@
 				<p:outputLabel value="Valor pago" />
 				<p:inputText filter="true" value="#{faturasBack.f.fat_valorPago}" />
 
-				<p:outputLabel for="event" value="Pago em" />
-		        <p:calendar id="event" value="#{faturasBack.f.fat_dataPago}">
-		            <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="" />
-		        </p:calendar>
+				
 		        
 		        
 		        <p:outputLabel for="status" value="Status:" />
