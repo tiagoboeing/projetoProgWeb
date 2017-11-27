@@ -73,7 +73,7 @@ public class SistemaBack implements Serializable{
 
         if (file != null) {
 
-            File file1 = new File("C:/Users/tiagoboeing/Desktop/pweb/", file.getFileName()); 
+            File file1 = new File("C:/Users/tiagoboeing/eclipse-workspace/projetoProgWeb/src/main/webapp/resources/uploads/", file.getFileName()); 
            
             try {
                 FileOutputStream fos = new FileOutputStream(file1);
