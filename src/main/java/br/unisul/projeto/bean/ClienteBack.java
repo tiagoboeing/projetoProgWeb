@@ -128,6 +128,12 @@ public class ClienteBack implements Serializable {
 		cliente = new Cliente();
 
 	}
+	
+	
+	
+
+	
+	
 
 	public Cliente getCliente() {
 		return cliente;

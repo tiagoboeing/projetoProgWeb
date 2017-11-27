@@ -29,11 +29,12 @@
 			<h:outputText value="#{sistema.sis_id}" />
 		</p:column>
 		
+		
 		<p:column headerText="Arquivo" sortBy="#{sistema.sis_arquivo}">
 			
 			<p:lightBox styleClass="imagebox" id="lighbox1"> 
 				<h:outputLink value="../resources/uploads/#{sistema.sis_arquivo}">  
-		        	<h:graphicImage library="uploads" name="#{sistema.sis_arquivo}" style="height: 77px; width: 100px" />  
+		        	<h:graphicImage library="uploads" name="#{sistema.sis_arquivo}" style="width: 500px; background: #058DFF;" />  
 		    	</h:outputLink>
 	    	</p:lightBox>
 			

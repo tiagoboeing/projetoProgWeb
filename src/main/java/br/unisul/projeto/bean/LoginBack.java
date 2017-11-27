@@ -27,7 +27,7 @@ public class LoginBack implements Serializable {
 
 			if (user != null) {
 				SessionContext.getInstance().setAttribute("usuarioLogado", user);
-				return "/root/principal.xhtml?faces-redirect=true";
+				return "/dashboard.xhtml?faces-redirect=true";
 
 			} else {
 				FacesContext.getCurrentInstance().validationFailed();

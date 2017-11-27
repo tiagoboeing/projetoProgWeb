@@ -11,6 +11,7 @@ import br.unisul.projeto.util.HibernateUtil;
 
 public class ClienteDao {
 
+	
 	public void alterarCliente(Cliente cliente) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction t = null;

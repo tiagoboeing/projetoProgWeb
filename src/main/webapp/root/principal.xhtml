@@ -88,12 +88,24 @@
 <p:growl id="msg" />
 
 
-<div style="width: 100%; background: #058dff">
-	<a href="/projetoProgWeb/root/principal.xhtml"> 
+<div style="width: 100%; background: #058dff;">
+
+	<a href="/projetoProgWeb/dashboard.xhtml"> 
 		
-		<!-- C:/Users/tiagoboeing/Desktop/pweb/#{sistemaBack.sistema.sis_arquivo} -->
-				  
-		<p:graphicImage	library="images" name="logo-white.png" class="logomarca"/>
+			<p:dataTable style="background: #058dff;" paginator="false" 
+	value="#{sistemaBack.listaArquivos}" var="sistema" rows="1" sortBy="#{sistemaBack.sistema.sis_id}" sortOrder="descending">
+		
+			<p:column style="border: none; padding: 0; margin: 0;">	
+
+				<h:graphicImage library="uploads" name="#{sistema.sis_arquivo}" class="logomarca" style="background: #058dff; margin: 0; padding: 0;" />  
+				
+				<!-- <p:graphicImage	library="uploads" name="#{sistema.sis_arquivo}" width="100%"/> -->
+			</p:column>
+		</p:dataTable>
+		
+		<!-- <p:graphicImage library="C:/Users/tiagoboeing/Desktop/pweb" name="#{sistemaBack.sistema.sis_arquivo}"/> -->
+		
+		<!-- <p:graphicImage library="images" name="logo-white.png" class="logomarca"/> -->
 	</a>
 </div>
 
@@ -123,7 +135,7 @@
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="/projetoProgWeb/pages/clientes.xhtml"><i class="fa fa-list"	aria-hidden="true"></i> Listar clientes</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#"><i class="fa fa-plus-square"	aria-hidden="true"></i> Novo cliente</a>
+					<a class="dropdown-item" href="#" onclick="window.location.href = '/projetoProgWeb/pages/clientes.xhtml?new=true';"><i class="fa fa-plus-square" aria-hidden="true"></i> Novo cliente</a>
 				</div>
 			</li>
 				
