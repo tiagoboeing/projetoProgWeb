@@ -5,10 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -60,35 +56,7 @@ public class SistemaBack implements Serializable{
 		listarArquivos();
 
 	}
-	
-	
-	// faz upload para caminho temporário
-	public void uploadFile(FileUploadEvent evento) {
-
-		try {
-
-			UploadedFile x = evento.getFile();
 		
-			Path temp = Files.createTempFile(null, null);
-			Files.copy(x.getInputstream(), temp, StandardCopyOption.REPLACE_EXISTING);
-
-			sistema.setPathTemp(temp.toString());
-			
-			//pega nome do arquivo
-			String nomeArquivo = evento.getFile().getFileName();
-			
-			sistema.setSis_arquivo(nomeArquivo);
-			
-			
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-
-		Messages.addGlobalInfo(sistema.getPathTemp());
-
-	}
-	
 	
 	private UploadedFile file;
 
@@ -105,7 +73,7 @@ public class SistemaBack implements Serializable{
 
         if (file != null) {
 
-            File file1 = new File("C:/Users/tiagoboeing/eclipse-workspace/projetoProgWeb/src/main/webapp/resources/uploads", file.getFileName()); 
+            File file1 = new File("C:/Users/tiagoboeing/Desktop/pweb/", file.getFileName()); 
            
             try {
                 FileOutputStream fos = new FileOutputStream(file1);
@@ -133,31 +101,15 @@ public class SistemaBack implements Serializable{
                 e.printStackTrace();
             } 
             
+            SistemaDao dao1 = new SistemaDao();
+            listaArquivos = (ArrayList<Sistema>) dao1.listarTodos();
+    		
+    		novo();
+    		listarArquivos();
+            
         }
     }
 
-	
-	public void salvaArquivo() {
-		
-		SistemaDao dao = new SistemaDao();
-		Sistema sis = dao.salvaUpload(sistema);
-
-		Path origem = Paths.get(sistema.getPathTemp());
-		Path destino = Paths.get("/resources/uploads/" + sis.getSis_id() + ".png");
-		
-		try {
-
-			Files.copy(origem, destino, StandardCopyOption.REPLACE_EXISTING);
-
-		} catch (Exception e) {
-			Messages.addGlobalInfo("Erro");
-		}
-
-		Messages.addGlobalInfo("Logomarca cadastrada com sucesso");
-
-		sistema = new Sistema();
-
-	}
 	
 	
 	
@@ -166,7 +118,9 @@ public class SistemaBack implements Serializable{
 		sistema = (Sistema) evt.getComponent().getAttributes().get("sistemaExcluir");
 		SistemaDao dao = new SistemaDao();
 		dao.excluirArquivo(sistema);
+		
 		listaArquivos = (ArrayList<Sistema>) dao.listarTodos();
+		
 		novo();
 		listarArquivos();
 		

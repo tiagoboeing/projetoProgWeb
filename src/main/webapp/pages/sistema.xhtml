@@ -30,9 +30,19 @@
 		</p:column>
 		
 		<p:column headerText="Arquivo" sortBy="#{sistema.sis_arquivo}">
-			<p:graphicImage	library="uploads" name="#{sistema.sis_arquivo}" width="100%"/>
-			<h:outputText value="#{sistema.sis_arquivo}" />
+			
+			<p:lightBox styleClass="imagebox" id="lighbox1"> 
+				<h:outputLink value="../resources/uploads/#{sistema.sis_arquivo}">  
+		        	<h:graphicImage library="uploads" name="#{sistema.sis_arquivo}" style="height: 77px; width: 100px" />  
+		    	</h:outputLink>
+	    	</p:lightBox>
+			
+			<!-- <p:graphicImage	library="uploads" name="#{sistema.sis_arquivo}" width="100%"/>
+			<h:outputText value="#{sistema.sis_arquivo}" /> -->
 		</p:column>
+		
+		
+		
 		
 
 		<p:column headerText="Opções">
