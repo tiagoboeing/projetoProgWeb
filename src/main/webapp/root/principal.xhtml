@@ -17,8 +17,8 @@
 <!-- 	<link rel="stylesheet" type="text/css"
 		href="../resources/css/estilo.css" /> -->
 
-
-	<link rel="stylesheet" type="text/css" href="../resources/css/estilo.css" />
+<!-- 	
+	<h:outputStylesheet name="/resources/css/estilo.css" /> -->
 
 	<!-- GOOGLE FONTS -->
 	<link
@@ -33,18 +33,50 @@
 	<script src="https://use.fontawesome.com/73e4bfdca5.js"></script>
 
 	<style type="text/css">
-		.customDialog {
-			z-index: 9999;
-		}
-		
-		.ui-dialog.customDialog .ui-dialog-content {
-		    padding: 0;
-		    margin: 20px 10px;
-		}
-		.ui-dialog-titlebar.ui-widget-header.customDialog {
-		    color: black;
-		    box-shadow: none;
-		}
+	.customDialog {
+		z-index: 9999;
+	}
+	
+	.ui-dialog.customDialog .ui-dialog-content {
+	    padding: 0;
+	    margin: 20px 10px;
+	}
+	.ui-dialog-titlebar.ui-widget-header.customDialog {
+	    color: black;
+	    box-shadow: none;
+	}
+	.ui-button, button.ui-button.ui-state-default, .ui-button.ui-state-default{
+		box-shadow: none;
+		border: none;
+		border-radius: 0;
+		text-shadow: none;
+	}
+	.ui-panel{
+		padding: 0;
+	}
+	.ui-panel .ui-panel-content{
+		padding: 0;
+		margin: 0;
+	}
+	.ui-inputswitch .ui-inputswitch-on, .ui-inputswitch .ui-inputswitch-off{
+		height: 24px;
+	}
+	.ui-inputswitch .ui-inputswitch-handle{
+		height: 30px;
+	}
+	.ui-inputswitch{
+		height: 30px;
+	}
+	.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield{
+		box-shadow: none;
+		font-size: 16px;
+	}
+	.ui-state-focus{
+		box-shadow: none;
+	}
+	.ui-state-active{
+		box-shadow: none;	
+	}
 	</style>
 
 
@@ -108,7 +140,8 @@
 			</li>
 
 
-			<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+			<li class="nav-item"><a class="nav-link" href="/projetoProgWeb/pages/sistema.xhtml"><i class="fa fa-cog" aria-hidden="true"></i> Personalizar</a></li>
+			
 			<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
 			
 		</ul>

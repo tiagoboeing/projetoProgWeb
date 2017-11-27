@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.primefaces.model.UploadedFile;
 
 @SuppressWarnings("serial")
 @Entity
@@ -18,13 +21,19 @@ public class Sistema implements Serializable{
 	
 	@Column(length = 255)
 	private String sis_arquivo;
-
+	
+	@Transient
+	private String pathTemp;
+	
+	@Transient
+	private UploadedFile file;
 	
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((pathTemp == null) ? 0 : pathTemp.hashCode());
 		result = prime * result + ((sis_arquivo == null) ? 0 : sis_arquivo.hashCode());
 		result = prime * result + ((sis_id == null) ? 0 : sis_id.hashCode());
 		return result;
@@ -39,6 +48,11 @@ public class Sistema implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Sistema other = (Sistema) obj;
+		if (pathTemp == null) {
+			if (other.pathTemp != null)
+				return false;
+		} else if (!pathTemp.equals(other.pathTemp))
+			return false;
 		if (sis_arquivo == null) {
 			if (other.sis_arquivo != null)
 				return false;
@@ -66,6 +80,22 @@ public class Sistema implements Serializable{
 
 	public void setSis_arquivo(String sis_arquivo) {
 		this.sis_arquivo = sis_arquivo;
+	}
+
+	public String getPathTemp() {
+		return pathTemp;
+	}
+
+	public void setPathTemp(String pathTemp) {
+		this.pathTemp = pathTemp;
+	}
+
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
 	}
 	
 	

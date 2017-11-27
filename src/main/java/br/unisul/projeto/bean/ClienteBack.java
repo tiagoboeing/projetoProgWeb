@@ -90,6 +90,8 @@ public class ClienteBack implements Serializable {
 
 	}
 
+	
+	// NOVO
 	public void cadastra() {
 
 		ClienteDao dao = new ClienteDao();

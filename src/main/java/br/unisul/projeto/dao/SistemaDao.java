@@ -60,6 +60,34 @@ public class SistemaDao {
 	}
 	
 	
+	
+	// salvar - upload
+	public Sistema salvaUpload(Sistema sistema) {
+		
+		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
+		Transaction t = null;
+		
+		Sistema novo = null;
+
+		try {
+			t = sessao.beginTransaction();
+			novo = (Sistema) sessao.merge(sistema);
+			t.commit();
+
+		} catch (Exception e) {
+			if (t != null) {
+				t.rollback();
+			}
+			throw (e);
+
+		} finally {
+			sessao.close();
+
+		}
+		return novo;
+	}
+	
+	
 	// Excluir
 	public void excluirArquivo(Sistema sistema) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
