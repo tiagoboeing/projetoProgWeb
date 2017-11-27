@@ -126,11 +126,14 @@ public class FaturasBack implements Serializable {
 			f.setFat_valorPago(f.getFat_valorPago());
 			Double valorPagamento = f.getFat_valorPago();
 			
-			if(f.getFat_valor() >= f.getFat_valorPago()) {
+			if(f.getFat_valor() >= valorPagamento) {
 				// paga atual
 				dao.alterar(f);
 			} else {
 				Messages.addGlobalInfo("Opa, o valor pago é superior ao valor da fatura!");
+				
+				carregaFaturas();
+				listar();
 				return;
 			}
 
