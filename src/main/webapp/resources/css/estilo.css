@@ -36,10 +36,14 @@ body {
 	clear: both;
 }
 
+
+.ui-fileupload-choose {
+	padding: 20px !important;
+}
+
 @media (max-width: 400px){
 	.logomarca{}
 	.logomarca img{
 		width: 280px;	
 	}
 }
-
