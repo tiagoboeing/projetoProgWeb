@@ -22,6 +22,9 @@
 - O upload só funcionará se for configurado o caminho/pasta para que upload seja realizado. Evitando a necessidade de atualizar o projeto no Eclipse manualmente, escolhemos um caminho local no **desktop** do sistema.
 - A alteração deve ser realizada no arquivo <a href="https://github.com/tiagoboeing/projetoProgWeb/blob/master/src/main/java/br/unisul/projeto/bean/SistemaBack.java">SistemaBack.java</a>.
 
+## Executar projeto
+>O arquivo a ser rodado é o <a href="https://github.com/tiagoboeing/projetoProgWeb/blob/master/src/main/webapp/root/principal.xhtml">**principal.xhtml**</a> ou <a href="https://github.com/tiagoboeing/projetoProgWeb/blob/master/src/main/webapp/root/login.xhtml">**login.xhtml**</a>
+
 # Dúvidas?
 - Tiago Boeing: (48) 99168-0027 | contato@tiagoboeing.com.br | tiagoboeing11@gmail.com
 - Leonardo May: (48) 99941-9284 | leojcmay@gmail.com
