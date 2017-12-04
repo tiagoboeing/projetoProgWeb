@@ -8,187 +8,202 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	template="/root/principal.xhtml">		
+	template="/root/principal.xhtml">
 
-		
+
 	<ui:define name="conteudo">
 
 		<h:form id="frmTab">
-		<p:panel>
+			<p:panel>
 
-			<p:dataTable emptyMessage="Sem registros" paginator="true" 
-			value="#{faturasBack.listaFaturas}" var="fatura" rows="30" id="table" sortBy="#{faturasBack.f.fat_id}" sortOrder="descending">
-
-
-				<f:facet name="header">
-					<p:commandButton value="Novo" actionListener="#{faturasBack.novo}"
-						oncomplete="PF('dlg').show();" update=":frmCad:telaCad :msg" />
-				</f:facet>
-
-				
-				<!-- ID FATURA -->
-				<!-- filterBy="#{fatura.fat_id}" -->
-				<p:column headerText="#ID" sortBy="#{fatura.fat_id}" width="100">
-					<h:outputText value="# #{fatura.fat_id}" />
-				</p:column>
+				<p:dataTable emptyMessage="Sem registros" paginator="true"
+					value="#{faturasBack.listaFaturas}" var="fatura" rows="30"
+					id="table" sortBy="#{faturasBack.f.fat_id}" sortOrder="descending">
 
 
-				<p:column headerText="Cliente" sortBy="#{fatura.cli_nome.cli_nome}">
-					<h:outputText
-						value="#{fatura.cli_nome.cli_nome} #{fatura.cli_nome.cli_sobrenome}" />
-				</p:column>
-				
+					<f:facet name="header">
+						<p:commandButton value="Novo" actionListener="#{faturasBack.novo}"
+							oncomplete="PF('dlg').show();" update=":frmCad:telaCad :msg" />
+					</f:facet>
 
-				<!-- DATA DA FATURA -->
-				<p:column headerText="Data da fatura" sortBy="#{fatura.fat_data}" width="100">
-					<h:outputText value="#{fatura.fat_data}" />
-				</p:column>
-				
 
-				<!-- VALOR DA FATURA -->
-				<p:column headerText="Valor R$" sortBy="#{fatura.fat_valor}" width="100">
-					<h:outputText value="R$ #{fatura.fat_valor}" />
-				</p:column>
-				
-				
-				<!-- DATA DE PAGAMENTO -->
-				<p:column headerText="Data de pagamento" sortBy="#{fatura.fat_dataPago}" width="150">
-					<h:outputText value="#{fatura.fat_dataPago}" />
-				</p:column>
-				
-				
-				<!-- VALOR PAGO -->
-				<p:column headerText="Valor pago R$" sortBy="#{fatura.fat_valorPago}" width="150">
-					<h:outputText value="R$ #{fatura.fat_valorPago}" />
-				</p:column>
-				
-				
-				<!-- STATUS DA FATURA -->
-				<p:column headerText="Status" sortBy="#{fatura.fat_status}">
-					<h:outputText value="#{fatura.fat_status}" />
-				</p:column>
-				
-				
+					<!-- ID FATURA -->
+					<!-- filterBy="#{fatura.fat_id}" -->
+					<p:column headerText="#ID" sortBy="#{fatura.fat_id}" width="100">
+						<h:outputText value="# #{fatura.fat_id}" />
+					</p:column>
 
-				<p:column headerText="Opções">
 
-					<!-- EXCLUIR FATURA -->
-					<p:commandButton icon="ui-icon-trash"
-						actionListener="#{faturasBack.excluir}"
-						update=":msg :frmTab:table">
+					<p:column headerText="Cliente" sortBy="#{fatura.cli_nome.cli_nome}">
+						<h:outputText
+							value="#{fatura.cli_nome.cli_nome} #{fatura.cli_nome.cli_sobrenome}" />
+					</p:column>
 
-						<p:confirm header="Confirmação" message="Excluir fatura?"
-							icon="ui-icon-alert" />
-						<f:attribute name="faturaExcluir" value="#{fatura}" />
-					</p:commandButton>
 
-					<!-- EDITAR FATURA -->
-					<p:commandButton icon="ui-icon-pencil"
-						oncomplete="PF('dlg').show();"
-						actionListener="#{faturasBack.alterar}"
-						update=":frmCad:telaCad :msg">
-						<f:attribute name="faturaAlterar" value="#{fatura}" />
-					</p:commandButton>
+					<!-- DATA DA FATURA -->
+					<p:column headerText="Data da fatura" sortBy="#{fatura.fat_data}"
+						width="100">
+						<h:outputText value="#{fatura.fat_data}" />
+					</p:column>
+
+
+					<!-- VALOR DA FATURA -->
+					<p:column headerText="Valor R$" sortBy="#{fatura.fat_valor}"
+						width="100">
+						<h:outputText value="R$ #{fatura.fat_valor}" />
+					</p:column>
+
+
+					<!-- DATA DE PAGAMENTO -->
+					<p:column headerText="Data de pagamento"
+						sortBy="#{fatura.fat_dataPago}" width="150">
+						<h:outputText value="#{fatura.fat_dataPago}" />
+					</p:column>
+
+
+					<!-- VALOR PAGO -->
+					<p:column headerText="Valor pago R$"
+						sortBy="#{fatura.fat_valorPago}" width="150">
+						<h:outputText value="R$ #{fatura.fat_valorPago}" />
+					</p:column>
+
+
+					<!-- STATUS DA FATURA -->
+					<p:column headerText="Status" sortBy="#{fatura.fat_status}">
+						<h:outputText value="#{fatura.fat_status}" />
+					</p:column>
 
 
 
-					<!-- PAGAR FATURA -->
-					<p:commandButton icon="ui-icon-dollar" oncomplete="PF('pagar').show();"
-						update=":formPagarFatura:telaPagar" actionListener="#{faturasBack.setarFatura}"	value="Pagar fatura" style="background: green; color: #fff;" rendered="#{faturasBack.checaPago()}">
-						<f:attribute name="pagarFatura" value="#{fatura}" />
-					</p:commandButton>
-					
-				</p:column>
+					<p:column headerText="Opções">
 
-			</p:dataTable>
+						<!-- BOTÃO EXCLUIR FATURA -->
+						<p:commandButton icon="ui-icon-trash"
+							actionListener="#{faturasBack.excluir}"
+							update=":msg :frmTab:table">
 
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:confirm header="Confirmação" message="Excluir fatura?"
+								icon="ui-icon-alert" />
+							<f:attribute name="faturaExcluir" value="#{fatura}" />
+						</p:commandButton>
+
+
+						<!-- BOTÃO EDITAR FATURA -->
+						<p:commandButton icon="ui-icon-pencil"
+							oncomplete="PF('dlg').show();"
+							actionListener="#{faturasBack.alterar}"
+							update=":frmCad:telaCad :msg">
+							<f:attribute name="faturaAlterar" value="#{fatura}" />
+						</p:commandButton>
+
+
+						<!-- BOTÃO PAGAR FATURA -->
+						<p:commandButton icon="ui-icon-dollar"
+							oncomplete="PF('pagar').show();"
+							update=":formPagarFatura:telaPagar"
+							actionListener="#{faturasBack.setarFatura}" value="Pagar fatura"
+							style="background: green; color: #fff;"
+							disabled="#{faturasBack.checaPago}">
+							<f:attribute name="pagarFatura" value="#{fatura}" />
+						</p:commandButton>
+
+
+					</p:column>
+
+				</p:dataTable>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 	        <p:commandButton value="Sim" type="button"
-					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 	        <p:commandButton value="Não" type="button"
-					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
     	</p:confirmDialog>
 
 
-		</p:panel>
-	</h:form>
-	
+			</p:panel>
+		</h:form>
 
-	<p:dialog header="Faturas" widgetVar="dlg" resizable="false"
-		draggable="false" modal="true" closable="false">
-		
-		<h:form id="frmCad" enctype="multipart/form-data">
 
-			<h:panelGrid columns="2" id="telaCad">
+		<p:dialog header="Faturas" widgetVar="dlg" resizable="false"
+			draggable="false" modal="true" closable="false">
 
-				<f:selectItem itemLabel="Selecione um Cliente" itemValue="" />
-				<f:selectItems value="#{faturasBack.clientes}" var="cli"
-					itemLabel="#{cli.cli_nome} #{cli.cli_sobrenome}" itemValue="#{cli}" />
-				<p:outputLabel value="Cliente" />
+			<h:form id="frmCad" enctype="multipart/form-data">
 
-				<p:selectOneMenu size="20" maxlength="30"
-					value="#{faturasBack.f.cli_nome}"
-					converter="omnifaces.SelectItemsConverter">
+				<h:panelGrid columns="2" id="telaCad">
+
 					<f:selectItem itemLabel="Selecione um Cliente" itemValue="" />
 					<f:selectItems value="#{faturasBack.clientes}" var="cli"
 						itemLabel="#{cli.cli_nome} #{cli.cli_sobrenome}"
 						itemValue="#{cli}" />
-				</p:selectOneMenu>
+					<p:outputLabel value="Cliente" />
 
-				<p:outputLabel value="Valor" />
+					<p:selectOneMenu size="20" maxlength="30"
+						value="#{faturasBack.f.cli_nome}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Selecione um Cliente" itemValue="" />
+						<f:selectItems value="#{faturasBack.clientes}" var="cli"
+							itemLabel="#{cli.cli_nome} #{cli.cli_sobrenome}"
+							itemValue="#{cli}" />
+					</p:selectOneMenu>
 
-				<p:inputText filter="true" value="#{faturasBack.f.fat_valor}" />
+					<p:outputLabel value="Valor" />
 
-			</h:panelGrid>
+					<p:inputText filter="true" value="#{faturasBack.f.fat_valor}" />
 
-			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" onclick="PF('dlg').hide();"
-					actionListener="#{faturasBack.salvar}"
-					update=":msg :frmCad:telaCad :frmTab:table" />
+				</h:panelGrid>
 
-				<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();" />
-			</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar" onclick="PF('dlg').hide();"
+						actionListener="#{faturasBack.salvar}"
+						update=":msg :frmCad:telaCad :frmTab:table" />
 
-		</h:form>
-	</p:dialog>
-	
-	
-	
-	<!-- PAGAR FATURA -->
-	<p:dialog header="Faturas" widgetVar="pagar" resizable="false" draggable="false" modal="true" closable="false">
-		
-		<h:form id="formPagarFatura">
-			
-			<h:panelGrid columns="2" id="telaPagar">
-			
-				<p:outputLabel value="Valor pago" />
-				<p:inputText filter="true" value="#{faturasBack.f.fat_valorPago}" />
+					<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();" />
+				</h:panelGrid>
 
-				
-		        
-		        
-		        <p:outputLabel for="status" value="Status:" />
-		        <p:selectOneMenu id="status" value="#{faturasBack.f.fat_status}" style="width:125px">
-		            <f:selectItem itemLabel="Pago" itemValue="Pago" editable="false"/>
-		        </p:selectOneMenu>
-        		
-			</h:panelGrid>
-			
-			
-			<!-- BOTÕES -->
-			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" onclick="PF('pagar').hide();" actionListener="#{faturasBack.pagarFatura}" update=":msg :formPagarFatura:telaPagar :frmTab:table" />
+			</h:form>
+		</p:dialog>
 
-				<p:commandButton value="Fechar" oncomplete="PF('pagar').hide();" />
-			</h:panelGrid>
-			
-			
-		</h:form>
-		
-	</p:dialog>
 
-<!-- </h:body>
+
+		<!-- PAGAR FATURA -->
+		<p:dialog header="Faturas" widgetVar="pagar" resizable="false"
+			draggable="false" modal="true" closable="false">
+
+			<h:form id="formPagarFatura">
+
+				<h:panelGrid columns="2" id="telaPagar">
+
+					<p:outputLabel value="Valor pago" />
+					<p:inputText filter="true" value="#{faturasBack.f.fat_valorPago}" />
+
+
+
+
+					<p:outputLabel for="status" value="Status:" />
+					<p:selectOneMenu id="status" value="#{faturasBack.f.fat_status}"
+						style="width:125px">
+						<f:selectItem itemLabel="Pago" itemValue="Pago" editable="false" />
+					</p:selectOneMenu>
+
+				</h:panelGrid>
+
+
+				<!-- BOTÕES -->
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar" onclick="PF('pagar').hide();"
+						actionListener="#{faturasBack.pagarFatura}"
+						update=":msg :formPagarFatura:telaPagar :frmTab:table" />
+
+					<p:commandButton value="Fechar" oncomplete="PF('pagar').hide();" />
+				</h:panelGrid>
+
+
+			</h:form>
+
+		</p:dialog>
+
+		<!-- </h:body>
 </html> -->
 
-</ui:define>
+	</ui:define>
 </ui:composition>

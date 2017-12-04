@@ -165,11 +165,16 @@ public class FaturasBack implements Serializable {
 				dao.salvar(f);
 			} 
 			
+			if(f.getFat_status().equalsIgnoreCase("Pago")) {
+				checaPago(true);
+			} else {
+				checaPago(false);
+			}
 
 			Messages.addGlobalInfo("Fatura PAGA com sucesso");
 
 			carregaFaturas();
-			listar();
+			listar();		
 
 		} catch (Exception e) {
 			Messages.addGlobalInfo("Erro ao pagar fatura");
@@ -178,15 +183,15 @@ public class FaturasBack implements Serializable {
 
 	}
 
-	// Serve para quando iniciar o program chamar o método para ser executado
+	
+	// Chamar método ao iniciar programa
 	// @PostConstruct
-	// public void iniciaTela() {
-	// carregaUfs();
-	// }
 
-	public Boolean checaPago() {
 
-		return true;
+	public Boolean checaPago(Boolean desativado) {
+		
+		return desativado;
+		
 	}
 
 	private void carregaFaturas() {
