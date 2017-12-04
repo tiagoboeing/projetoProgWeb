@@ -10,9 +10,9 @@
 
 		<!-- Configurações de Conexão com o Banco de Dados -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://oregionalsul.me:3306/projeto_progweb</property>
-		<property name="connection.username">pweb</property>
-		<property name="connection.password">pweb</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/programacao_web</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">1234</property>
 
 		<!-- Pool de Conexões -->
 		<property name="connection.pool_size">1</property>
@@ -29,16 +29,20 @@
 		<!-- Mostra as SQLs Geradas -->
 		<!-- em desenvolvimento se coloca true, para mostrar no console -->
 		<property name="show_sql">true</property>
+		
+		<property name="format_sql">true</property>
 
 		<!-- Cria as tabelas do banco de dados - (create) colocar para validate 
 			quando finalizar a programação -->
 		<property name="hbm2ddl.auto">validate</property>
 
+
 		<!-- Mapeamento das entidades -->
-		<mapping class="br.unisul.projeto.domain.Estado" />
+		<!-- <mapping class="br.unisul.projeto.domain.Estado" /> -->
 		<mapping class="br.unisul.projeto.domain.Cliente" />
 		<mapping class="br.unisul.projeto.domain.Faturas" />
 		<mapping class="br.unisul.projeto.domain.Usuario" />
+		<mapping class="br.unisul.projeto.domain.Sistema" />
 
 	</session-factory>
 

@@ -39,7 +39,7 @@
 <h:body>
 
 	<!-- TOPO DA PÁGINA -->
-	<%@ include file="pages/parts/header.xhtml"%>
+	<%@ include file="pages/parts/header-backup.xhtml"%>
 
 	<!-- conteúdo -->
 	<%@ include file="pages/paginas.jsp" %>

@@ -52,7 +52,7 @@ public class Cliente implements Serializable {
 	private String cli_observacoes;
 
 	@Column(length = 1)
-	private Integer cli_status;
+	private String cli_status;
 
 	@Column(length = 1)
 	private String cli_tipoconta;
@@ -62,6 +62,9 @@ public class Cliente implements Serializable {
 
 	@Column(length = 50)
 	private Double cli_saldo;
+	
+	@Column(length = 20)
+	private String cli_telefone;
 
 	// Serve para utilizar no que irá ficar em memória, não ira para o banco de
 	// dados
@@ -87,6 +90,7 @@ public class Cliente implements Serializable {
 		result = prime * result + ((cli_saldo == null) ? 0 : cli_saldo.hashCode());
 		result = prime * result + ((cli_sobrenome == null) ? 0 : cli_sobrenome.hashCode());
 		result = prime * result + ((cli_status == null) ? 0 : cli_status.hashCode());
+		result = prime * result + ((cli_telefone == null) ? 0 : cli_telefone.hashCode());
 		result = prime * result + ((cli_tipoconta == null) ? 0 : cli_tipoconta.hashCode());
 		result = prime * result + ((pathTemp == null) ? 0 : pathTemp.hashCode());
 		return result;
@@ -176,6 +180,11 @@ public class Cliente implements Serializable {
 				return false;
 		} else if (!cli_status.equals(other.cli_status))
 			return false;
+		if (cli_telefone == null) {
+			if (other.cli_telefone != null)
+				return false;
+		} else if (!cli_telefone.equals(other.cli_telefone))
+			return false;
 		if (cli_tipoconta == null) {
 			if (other.cli_tipoconta != null)
 				return false;
@@ -187,6 +196,15 @@ public class Cliente implements Serializable {
 		} else if (!pathTemp.equals(other.pathTemp))
 			return false;
 		return true;
+	}
+
+	
+	public String getCli_telefone() {
+		return cli_telefone;
+	}
+
+	public void setCli_telefone(String cli_telefone) {
+		this.cli_telefone = cli_telefone;
 	}
 
 	public Double getCli_saldo() {
@@ -285,11 +303,11 @@ public class Cliente implements Serializable {
 		this.cli_observacoes = cli_observacoes;
 	}
 
-	public Integer getCli_status() {
+	public String getCli_status() {
 		return cli_status;
 	}
 
-	public void setCli_status(Integer cli_status) {
+	public void setCli_status(String cli_status) {
 		this.cli_status = cli_status;
 	}
 

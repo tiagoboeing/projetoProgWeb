@@ -1,87 +1,91 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<!-- <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Cadastro de clientes</title>
-</h:head>  -->
+<!DOCTYPE html>
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	template="/root/principal.xhtml">
+	template="../root/principal.xhtml">
 
-<!-- <h:body>  
 
-	<div class="container">
+	<ui:define name="conteudo">
 
-		<h1>Cadastro de Clientes</h1> -->
-
-		<!-- PAINEL DE LISTAGEM -->
-		<!-- <p:growl id="msg" /> -->
-		
-<ui:define name="telas">
-		
-		<h:form id="formCliente"> 
+		<h:form id="formCliente">
 
 			<p:panel header="Cadastro de Clientes">
-			
 
 				<p:dataTable emptyMessage="Sem registros" paginator="true"
 					value="#{clienteBack.listaClientes}" id="tbl" var="cliente"
 					rows="100" paginatorPosition="bottom">
 
 					<f:facet name="header">
-						<p:commandButton value="Novo" oncomplete="PF('dlg').show();" />
+						<p:commandButton value="Novo" onclick="PF('dlg').show();"
+							type="button" />
 					</f:facet>
+
+
 
 					<p:column headerText="Cliente"
 						sortBy="#{cliente.cli_nome} #{cliente.cli_sobrenome}"
 						filterBy="#{cliente.cli_nome} #{cliente.cli_sobrenome}">
 						<h:outputText value="#{cliente.cli_nome} #{cliente.cli_sobrenome}" />
-					</p:column> -->
+					</p:column>
+					
+					<p:column headerText="Telefone"
+						sortBy="#{cliente.cli_telefone}"
+						filterBy="#{cliente.cli_telefone}">
+						<h:outputText value="#{cliente.cli_telefone}" />
+					</p:column>
+					
+					<p:column headerText="E-mail"
+						sortBy="#{cliente.cli_email}"
+						filterBy="#{cliente.cli_email}">
+						<h:outputText value="#{cliente.cli_email}" />
+					</p:column>
+					
+					<p:column headerText="Cidade"
+						sortBy="#{cliente.cli_cidade}"
+						filterBy="#{cliente.cli_cidade}">
+						<h:outputText value="#{cliente.cli_cidade}" />
+					</p:column>
+					
 
-					<!-- <p:column headerText="Empresa"
+					<!-- 
+					<p:column headerText="Empresa"
 						sortBy="#{cliente.cli_empresa} #{cliente.cli_razaosocial}"
 						filterBy="#{cliente.cli_empresa} #{cliente.cli_razaosocial}">
 						<h:outputText
 							value="#{cliente.cli_empresa} - #{cliente.cli_razaosocial}" />
-					</p:column>  -->
+					</p:column>
 
-					<!-- SALDO DO CLIENTE -->
-					<!-- <p:column headerText="Saldo R$"
-						sortBy="#{cliente.cli_saldo}">
-						<h:outputText
-							value="#{cliente.cli_saldo}" />
-					</p:column> -->
 
-					<p:column headerText="Opções">
+					<p:column headerText="Status" filterBy="#{cliente.cli_status}">
+						<h:outputText value="#{cliente.cli_status}" />
+					</p:column>
+					 -->
+			
+					<p:column headerText="Opções" width="130">
+
+						<!-- EDITAR -->
+						<p:commandButton icon="ui-icon-pencil" label="Alterar"
+							oncomplete="PF('dlg').show();" update="formCadastro:pnlCad"
+							actionListener="#{clienteBack.edita}">
+							<f:attribute name="idAlterar" value="#{cliente}" />
+						</p:commandButton>
+
 
 						<!-- EXCLUIR -->
 						<p:commandButton icon="ui-icon-trash"
 							actionListener="#{clienteBack.exclui}"
-							update="formCliente:tbl msg">
-
+							update="formCliente:tbl msg"
+							style="background: #990000; border:0;">
 							<p:confirm header="Confirmação" message="Excluir cliente?"
 								icon="ui-icon-alert" />
 							<f:attribute name="idExcluir" value="#{cliente}" />
 						</p:commandButton>
 
-
-						<!-- EDITAR -->
-						<p:commandButton icon="ui-icon-pencil"
-							oncomplete="PF('dlg').show();" update="formCadastro:pnlCad"
-							actionListener="#{clienteBack.edita}">
-							<f:attribute name="idAlterar" value="#{cliente}" />
-						</p:commandButton>
 
 					</p:column>
 
@@ -101,82 +105,109 @@
 
 
 		<!-- CADASTRO DE CLIENTE -->
-		<p:dialog header="Cadastro de cliente" widgetVar="dlg"
-			resizable="false" draggable="false" modal="true" closable="true"
-			width="80%">
+		<p:dialog widgetVar="dlg" resizable="false" draggable="false"
+			modal="true" appendToBody="true" closable="true" width="50%"
+			styleClass="customDialog">
 
 			<h:form id="formCadastro">
 
-				<h:panelGrid columns="1" id="pnlCad">
-
-					<!-- LAYOUT DA TELA DE CADASTRO -->
-					<!-- <p:layout style="min-width:400px;min-height:200px;">
-						<p:layoutUnit position="west" resizable="true" size="100"
-							minSize="40" maxSize="200">
-							        West
-							    </p:layoutUnit>
-
-						<p:layoutUnit position="center">
-							        Center
-							    </p:layoutUnit>
-					</p:layout> -->
-
-					<!--<div class="ui-g-12 ui-md-3 ui-lg-3">-->
-
-						<!-- <p:outputLabel for="tipoConta" value="Tipo de conta:" />
-
-							<p:selectOneRadio id="tipoConta" value="" layout="responsive" columns="1">
+				<h:panelGrid id="pnlCad">
+					<!-- 
+					<div class="form-group row">
+						<div class="col-sm-10">
+							<p:selectOneRadio id="tipoConta"
+								value="#{clienteBack.cliente.cli_tipoconta}">
 								<f:selectItem itemLabel="Pessoa física" itemValue="F" />
 								<f:selectItem itemLabel="Pessoa jurídica" itemValue="J" />
-							</p:selectOneRadio> -->
+							</p:selectOneRadio>
+						</div>
+					</div>
+					 -->
+					 
+					<br />
 
-					<!--</div>-->
+					<!-- NOME E SOBRENOME -->
+					<h:panelGrid columns="2">
 
-					<!--<div class="ui-g-12 ui-md-9 ui-lg-9">-->
+						<p:inputText id="txtNome" class="form-control" maxlength="50"
+							style="width: 100%;" value="#{clienteBack.cliente.cli_nome}"
+							required="false" placeholder="Nome" />
+						<p:inputText id="txtSobrenome" class="form-control" maxlength="50"
+							style="width: 50%;" value="#{clienteBack.cliente.cli_sobrenome}"
+							required="false" placeholder="Sobrenome" />
+					</h:panelGrid>
 
-						<!--<h:panelGrid columns="1">-->
+					<p:inputText id="txtTelefone" maxlength="50" size="30"
+						value="#{clienteBack.cliente.cli_telefone}" required="false"
+						placeholder="Telefone" />
+					
+					<p:inputText id="txtEmail" maxlength="50" size="30"
+						value="#{clienteBack.cliente.cli_email}" required="false"
+						placeholder="E-mail" />	
+						
+					<p:inputText id="txtCidade" maxlength="50" size="30"
+						value="#{clienteBack.cliente.cli_cidade}" required="false"
+						placeholder="Cidade" />		
+						
+						
+					<!-- CPF e RG -->
+					<!-- 
+					<h:panelGrid columns="2">
+						<p:inputText id="txtCpf" maxlength="50" size="34"
+							value="#{clienteBack.cliente.cli_cpf}" required="false"
+							placeholder="CPF" />
 
-							
+						<p:inputText id="txtRg" maxlength="50" size="34"
+							value="#{clienteBack.cliente.cli_rg}" required="false"
+							placeholder="RG" />
+					</h:panelGrid>
 
-							 	
-								
-							<!-- CADASTRO NOME, SOBRENOME  -->	
-								
-							<p:outputLabel value="Nome:" for="txtNome" />
+					<h:panelGrid columns="1">
+						<p:inputText id="txtEmpresa" maxlength="50" size="30"
+							value="#{clienteBack.cliente.cli_empresa}" required="false"
+							placeholder="Empresa" />
+					</h:panelGrid>
 
-							<p:inputText id="txtNome" maxlength="50" size="30" value="#{clienteBack.cliente.cli_nome}" required="true" requiredMessage="Nome obrigatório" />
+					<p:inputText id="txtRazaoSocial" maxlength="50" size="30"
+						value="#{clienteBack.cliente.cli_razaosocial}" required="false"
+						placeholder="Razão social" />
 
-							<p:outputLabel value="Sobrenome:" for="txtSobrenome" />
-							<p:inputText id="txtSobrenome" maxlength="50" size="30" value="#{clienteBack.cliente.cli_sobrenome}" required="true" requiredMessage="Sobrenome obrigatório" />
-								
-							<!-- CADASTRAR IMAGEM  -->
-							
-							<p:outputLabel value="Imagem" />
+					<p:inputText id="txtCnpj" maxlength="50" size="30"
+						value="#{clienteBack.cliente.cli_cnpj}" required="false"
+						placeholder="CNPJ" />
 
-							<!-- auto="false" -->
-							<p:fileUpload auto="true" id="fileUp" mode="advanced" fileUploadListener="#{clienteBack.upload}" update=":msg" />	
-								
-							<!--<p:commandButton value="Salvar cliente" actionListener="#{clienteBack.salvar}"/>-->
-							
-							
-							
-							
+					<p:outputLabel value="Data nasc." for="DataNasc" />
+					<p:calendar id="DataNasc" value="#{clienteBack.cliente.cli_dtnasc}">
+						<p:ajax event="dateSelect"
+							listener="#{clienteBack.cliente.cli_dtnasc}" update="" />
+					</p:calendar>
+					
 
-						<!--</h:panelGrid>-->
+					<h:form>
+						<p:selectOneButton value="#{clienteBack.cliente.cli_status}">
+							<f:selectItem itemLabel="Ativada" itemValue="Ativada" />
+							<f:selectItem itemLabel="Desativada" itemValue="Desativada" />
+						</p:selectOneButton>
+					</h:form>
+					
+					-->
 
-					<!--</div>-->
 
-					<!-- FECHA LAYOUT DA TELA DE CADASTRO -->
 				</h:panelGrid>
+
 
 
 				<h:panelGrid columns="2" style="float: right;">
 
-					 <p:commandButton value="Salvar cliente" actionListener="#{clienteBack.salvar}" update="formCadastro:pnlCad msg formCliente:tbl" onclick="PF('dlg').hide();"/>  
-						
+					<p:commandButton value="Salvar cliente"
+						actionListener="#{clienteBack.cadastra}"
+						update="formCadastro:pnlCad msg formCliente:tbl"
+						onclick="PF('dlg').hide();" />
 
-					<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();" style="background: red; color: #fff; border: none" />
-				</h:panelGrid> 
+					<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();"
+						style="background: red; color: #fff; border: none;" />
+
+				</h:panelGrid>
 
 			</h:form>
 
@@ -184,10 +215,7 @@
 		<!-- FECHA CADASTRO DE CLIENTE -->
 
 
-	<!-- </div>
 
-</h:body>
-</html> -->
-
-</ui:define>
+	</ui:define>
 </ui:composition>
+

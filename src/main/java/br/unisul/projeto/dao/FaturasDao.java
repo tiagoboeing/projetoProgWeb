@@ -36,13 +36,13 @@ public class FaturasDao {
 		}
 	}
 	
-	public void alterar(Cliente cliente) {
+	public void alterar(Faturas f) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction t = null;
 
 		try {
 			t = sessao.beginTransaction();
-			sessao.merge(cliente);
+			sessao.merge(f);
 			t.commit();
 
 		} catch (Exception e) {
@@ -97,6 +97,7 @@ public class FaturasDao {
 	}
 
 	public void salvar(Faturas f) {
+		
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction t = null;
 

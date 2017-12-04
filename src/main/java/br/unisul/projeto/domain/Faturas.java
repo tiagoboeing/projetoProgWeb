@@ -1,8 +1,6 @@
 package br.unisul.projeto.domain;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+
 
 @SuppressWarnings("serial")
 @Entity
@@ -33,7 +31,7 @@ public class Faturas implements Serializable {
 	private Double fat_valor;
 	
 	@Column(length = 20)
-	private Date fat_data;
+	private String fat_data;
 	
 	@Column(length = 20)
 	private String fat_status;
@@ -44,7 +42,7 @@ public class Faturas implements Serializable {
 	private Double fat_valorPago;
 	
 	@Column(length = 20)
-	private Date fat_dataPago;
+	private String fat_dataPago;
 
 	
 
@@ -110,12 +108,38 @@ public class Faturas implements Serializable {
 	}
 
 	
+	public Faturas clonaFatura(Faturas fat) {
+		
+		//copia dados atuais
+		String idFatura = fat.getFat_id()+"";
+		Cliente clienteIdFatura = fat.getCli_nome();
+		String dataFatura = fat.getFat_data();
+		String dataPago = fat.getFat_dataPago();
+		String statusFatura = fat.getFat_status();
+		Double valorFatura = fat.getFat_valor();
+		Double valorPago = fat.getFat_valorPago();
+		
+		// define novos valores para fatura clonada
+		Faturas fatNova = new Faturas();
+		
+		fatNova.setFat_id(Long.parseLong(idFatura));
+		fatNova.setCli_nome(clienteIdFatura);
+		fatNova.setFat_data(dataFatura);
+		fatNova.setFat_dataPago(dataPago);
+		fatNova.setFat_status(statusFatura);
+		fatNova.setFat_valor(valorFatura);
+		fatNova.setFat_valorPago(valorPago);
+		
+		return fatNova;
+		
+	}
 	
-	public Date getFat_data() {
+	
+	public String getFat_data() {
 		return fat_data;
 	}
 
-	public void setFat_data(Date fat_data) {
+	public void setFat_data(String fat_data) {
 		this.fat_data = fat_data;
 	}
 
@@ -159,11 +183,11 @@ public class Faturas implements Serializable {
 		this.fat_valorPago = fat_valorPago;
 	}
 
-	public Date getFat_dataPago() {
+	public String getFat_dataPago() {
 		return fat_dataPago;
 	}
 
-	public void setFat_dataPago(Date fat_dataPago) {
+	public void setFat_dataPago(String fat_dataPago) {
 		this.fat_dataPago = fat_dataPago;
 	}
 

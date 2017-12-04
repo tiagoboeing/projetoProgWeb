@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
@@ -7,46 +8,214 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <h:head>
+
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Principal</title>
-	<h:outputStylesheet library="css" name="estilo.css" />
+	<title>Sistema crediário - Programação web</title>
+	
+	<link rel="stylesheet" type="text/css" href="../resources/css/estilo.css" />
+
+	<!-- 	<link rel="stylesheet" type="text/css"
+		href="../resources/css/estilo.css" /> -->
+
+	<!-- 	
+	<h:outputStylesheet name="/resources/css/estilo.css" /> -->
+
+	<!-- GOOGLE FONTS -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Roboto|Roboto+Slab"
+		rel="stylesheet" />
+
+	<!-- IMPORTA BOOTSTRAP -->
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+		integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+		crossorigin="anonymous" />
+
+	<!-- FONT-AWESOME -->
+	<script src="https://use.fontawesome.com/73e4bfdca5.js"></script>
+
+	<style type="text/css">
+.customDialog {
+	z-index: 9999;
+}
+
+.ui-dialog.customDialog .ui-dialog-content {
+	padding: 0;
+	margin: 20px 10px;
+}
+
+.ui-dialog-titlebar.ui-widget-header.customDialog {
+	color: black;
+	box-shadow: none;
+}
+
+.ui-button, button.ui-button.ui-state-default, .ui-button.ui-state-default
+	{
+	box-shadow: none;
+	border: none;
+	border-radius: 0;
+	text-shadow: none;
+}
+
+.ui-panel {
+	padding: 0;
+}
+
+.ui-panel .ui-panel-content {
+	padding: 0;
+	margin: 0;
+}
+
+.ui-inputswitch .ui-inputswitch-on, .ui-inputswitch .ui-inputswitch-off
+	{
+	height: 24px;
+}
+
+.ui-inputswitch .ui-inputswitch-handle {
+	height: 30px;
+}
+
+.ui-inputswitch {
+	height: 30px;
+}
+
+.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield
+	{
+	box-shadow: none;
+	font-size: 16px;
+}
+
+.ui-state-focus {
+	box-shadow: none;
+}
+
+.ui-state-active {
+	box-shadow: none;
+}
+.ui-button .ui-widget .ui-state-default .ui-corner-all .ui-button-text-icon-left .ui-fileupload-choose {
+	padding: 20px !important;
+}
+</style>
+
+
 </h:head>
+
+
 <h:body>
+
 	<p:growl id="msg" />
-	<div id="pagina">
 
-		<div id="Logo" class="divLogo">
-			
-				<p:graphicImage library="images" name="logo.png" height="150" width="100%"/>
-			
-		</div>  
+	<div style="width: 100%; background: #058dff;">
 
-		<div id="menu">
-
-			<h:form id="frmMenu">
-
-				<p:menubar>
-
-					<p:submenu label="Cadastros">
-						<p:menuitem value="Cliente" url="/pages/clientes.xhtml" />
-						<p:menuitem value="Fatura" url="/pages/faturas.xhtml" />
-					</p:submenu>
-
-					<p:submenu label="Arquivo">
-						<p:menuitem value="Sair" url="/root/principal.xhtml"/>
-					</p:submenu>
-
-				</p:menubar>
-
-			</h:form>
-
-		</div>
+		<h:form id="frmLogo">
+			<p:panel>
+				<p:dataTable emptyMessage="Sistema Crediário"
+					style="background: #058dff; width: 100%; padding: 0; margin: 0; border: 0;"
+					paginator="false" value="#{sistemaBack.listaArquivos}" var="sistema" rows="1" globalFilter="#{sistema.sis_id}" sortOrder="descending">
+					
+					<p:column
+						style="border: none; padding: 0; margin: 0; width: 100%; background: #058dff;">
+						<h:graphicImage library="uploads" name="#{sistema.sis_arquivo}" />
+						<!-- <p:graphicImage	library="uploads" name="#{sistema.sis_arquivo}" width="100%"/> -->
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
 
 	</div>
 
-	<div id="telas">
-		<ui:insert name="telas" />
+
+
+	<!-- NAVBAR BOOTSTRAP -->
+	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark"
+		xmlns:f="http://java.sun.com/jsf/core"> <!-- NOME DO SITE -->
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarText" aria-controls="navbarText"
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<!-- MENU -->
+	<div class="collapse navbar-collapse" id="navbarText">
+		<ul class="navbar-nav mr-auto">
+
+			<li class="nav-item"><a class="nav-link"
+				href="/projetoProgWeb/dashboard.xhtml"><i class="fa fa-home"
+					aria-hidden="true"></i> Dashboard</a></li>
+
+			<!--  clientes -->
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+				role="button" aria-haspopup="true" aria-expanded="true"><i
+					class="fa fa-user" aria-hidden="true"></i> Clientes</a>
+
+
+				<div class="dropdown-menu">
+					<a class="dropdown-item"
+						href="/projetoProgWeb/pages/clientes.xhtml"><i
+						class="fa fa-list" aria-hidden="true"></i> Listar clientes</a>
+				</div></li>
+
+
+			<!--  faturas -->
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+				role="button" aria-haspopup="true" aria-expanded="true"> <i
+					class="fa fa-usd" aria-hidden="true"></i> Faturas
+			</a>
+
+
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="/projetoProgWeb/pages/faturas.xhtml"><i
+						class="fa fa-list" aria-hidden="true"></i> Listar faturas</a>
+				</div></li>
+
+
+			<li class="nav-item"><a class="nav-link"
+				href="/projetoProgWeb/pages/sistema.xhtml"><i class="fa fa-cog"
+					aria-hidden="true"></i> Personalizar</a></li>
+
+		</ul>
+
+
+
+		<!--  Sair do sistema -->
+		<span class="navbar-text"> <a class="nav-link"
+			href="/projetoProgWeb/root/login.xhtml"
+			style="color: #fff; text-decoration: none;"> <i
+				class="fa fa-sign-out" aria-hidden="true"></i> Sair do sistema
+		</a>
+		</span>
+
+
 	</div>
+	</nav>
+
+
+
+
+	<div class="container">
+
+
+		<ui:insert name="conteudo">
+
+		</ui:insert>
+
+	</div>
+
+
+	<!-- Bibliotecas Bootstrap -->
+	<!-- 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		type="text/javascript"></script> -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+		type="text/javascript"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+		type="text/javascript"></script>
 
 </h:body>
 </html>

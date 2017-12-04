@@ -1,37 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- <!DOCTYPE html> -->
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Tela de Login</title>
+	<title>Sistema creditário - Efetue login</title>
+	
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Roboto|Roboto+Slab" rel="stylesheet" />
+
+	<!-- IMPORTA BOOTSTRAP -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+
+	<!-- FONT-AWESOME -->
+	<script src="https://use.fontawesome.com/73e4bfdca5.js"></script>
+	
+	<!-- Custom css -->
+    <link href="../resources/css/login.css" rel="stylesheet"/>
+
 </h:head>
+
+
 <h:body>
+
+
+	
+
+
+	
+	
+	<div class="container">
+	
+	<!-- mensagens globais - primefaces -->
 	<p:growl id="msg" />
 
-	<p:panel header="Login">
-		<h:form id="frmLogin">
-			<h:panelGrid columns="2">
+      <h:form id="frmLogin" class="form-signin">
+      
+        <h2 class="form-signin-heading">Efetue login</h2>
+        <h3>Para acessar o painel administrativo é necessário uma conta.</h3>
+        
+        <label for="inputEmail" class="sr-only">Login</label>
+        <p:inputText type="email" id="inputEmail" value="#{loginBack.login}" class="form-control" placeholder="Login" required="" autofocus=""/>
+        
+        <label for="inputPassword" class="sr-only">Senha</label>
+        <p:password type="password" id="inputPassword" value="#{loginBack.senha}" class="form-control" placeholder="Senha" required=""/>
+        
+        
+<!--         <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"/> Lembre-me
+          </label>
+        </div> -->
+        
+        <p:commandButton class="btn btn-lg btn-primary btn-block" type="submit" value="Acessar" action="#{loginBack.fazLogin}"/>
+        
+      </h:form>
 
-				<p:outputLabel value="Login" />
-
-				<p:inputText size="20" maxlength="30" value="#{loginBack.login}" />
-
-				<p:outputLabel value="Senha" />
-
-				<p:password size="20" maxlength="30" value="#{loginBack.senha}" />
-
-				<p:commandButton icon="ui-icon-unlocked" value="Entrar"
-					action="#{loginBack.fazLogin}" />
-
-			</h:panelGrid>
-		</h:form>
-
-
-	</p:panel>
+    </div> <!-- /container -->
+	
 
 </h:body>
 </html>
