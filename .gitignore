@@ -11,3 +11,7 @@ target/m2e-wtp/web-resources/META-INF/maven/br.unisul.projeto/projetoProgWeb/pom
 target/classes/hibernate.cfg.xml
 src/main/resources/hibernate.cfg.xml
 .settings/org.eclipse.wst.common.component
+target/classes/hibernate.cfg.xml
+src/main/java/br/unisul/projeto/bean/SistemaBack.java
+src/main/resources/hibernate.cfg.xml
+target/classes/hibernate.cfg.xml

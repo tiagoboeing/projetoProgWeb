@@ -29,12 +29,12 @@
 
 					<!-- ID FATURA -->
 					<!-- filterBy="#{fatura.fat_id}" -->
-					<p:column headerText="#ID" sortBy="#{fatura.fat_id}" width="100">
+					<p:column headerText="#ID" sortBy="#{fatura.fat_id}" width="150" filterBy="#{fatura.fat_id}">
 						<h:outputText value="# #{fatura.fat_id}" />
 					</p:column>
 
 
-					<p:column headerText="Cliente" sortBy="#{fatura.cli_nome.cli_nome}">
+					<p:column headerText="Cliente" sortBy="#{fatura.cli_nome.cli_nome}" filterBy="#{fatura.cli_nome.cli_nome}">
 						<h:outputText
 							value="#{fatura.cli_nome.cli_nome} #{fatura.cli_nome.cli_sobrenome}" />
 					</p:column>

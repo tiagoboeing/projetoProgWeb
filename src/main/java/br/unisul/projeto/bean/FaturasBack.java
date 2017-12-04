@@ -126,6 +126,13 @@ public class FaturasBack implements Serializable {
 			f.setFat_valorPago(f.getFat_valorPago());
 			Double valorPagamento = f.getFat_valorPago();
 			
+			// data padrão - HOJE
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			LocalDate localDate = LocalDate.now();
+			String dataPadrao = dtf.format(localDate);
+			
+			f.setFat_dataPago(dataPadrao);
+			
 			if(f.getFat_valor() >= valorPagamento) {
 				// paga atual
 				dao.alterar(f);
