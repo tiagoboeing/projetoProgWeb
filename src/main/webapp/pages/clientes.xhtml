@@ -10,18 +10,19 @@
 	template="../root/principal.xhtml">
 
 
-<ui:define name="conteudo">
-		
-		<h:form id="formCliente"> 
+	<ui:define name="conteudo">
+
+		<h:form id="formCliente">
 
 			<p:panel header="Cadastro de Clientes">
-			
+
 				<p:dataTable emptyMessage="Sem registros" paginator="true"
 					value="#{clienteBack.listaClientes}" id="tbl" var="cliente"
 					rows="100" paginatorPosition="bottom">
 
 					<f:facet name="header">
-						<p:commandButton value="Novo" onclick="PF('dlg').show();" type="button" />
+						<p:commandButton value="Novo" onclick="PF('dlg').show();"
+							type="button" />
 					</f:facet>
 
 
@@ -39,8 +40,8 @@
 						<h:outputText
 							value="#{cliente.cli_empresa} - #{cliente.cli_razaosocial}" />
 					</p:column>
-					
-					
+
+
 					<p:column headerText="Status" filterBy="#{cliente.cli_status}">
 						<h:outputText value="#{cliente.cli_status}" />
 					</p:column>
@@ -54,16 +55,19 @@
 							actionListener="#{clienteBack.edita}">
 							<f:attribute name="idAlterar" value="#{cliente}" />
 						</p:commandButton>
-						
-						
+
+
 						<!-- EXCLUIR -->
-						<p:commandButton icon="ui-icon-trash" actionListener="#{clienteBack.exclui}" update="formCliente:tbl msg" style="background: #990000; border:0;">
+						<p:commandButton icon="ui-icon-trash"
+							actionListener="#{clienteBack.exclui}"
+							update="formCliente:tbl msg"
+							style="background: #990000; border:0;">
 							<p:confirm header="Confirmação" message="Excluir cliente?"
 								icon="ui-icon-alert" />
 							<f:attribute name="idExcluir" value="#{cliente}" />
 						</p:commandButton>
-						
-						
+
+
 					</p:column>
 
 				</p:dataTable>
@@ -82,107 +86,92 @@
 
 
 		<!-- CADASTRO DE CLIENTE -->
-		<p:dialog header="Cadastro de cliente" widgetVar="dlg"
-			resizable="false" draggable="false" modal="true" appendToBody="true" closable="true" width="50%" styleClass="customDialog">
+		<p:dialog widgetVar="dlg" resizable="false" draggable="false"
+			modal="true" appendToBody="true" closable="true" width="50%"
+			styleClass="customDialog">
 
 			<h:form id="formCadastro">
-	
-			<h:panelGrid id="pnlCad">
-				
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-					<div class="col-sm-10">
-						<p:selectOneRadio id="tipoConta" value="#{clienteBack.cliente.cli_tipoconta}">
-				            <f:selectItem itemLabel="Pessoa física" itemValue="F" />
-				            <f:selectItem itemLabel="Pessoa jurídica" itemValue="J" />
-				        </p:selectOneRadio>
+
+				<h:panelGrid id="pnlCad">
+
+					<div class="form-group row">
+						<div class="col-sm-10">
+							<p:selectOneRadio id="tipoConta"
+								value="#{clienteBack.cliente.cli_tipoconta}">
+								<f:selectItem itemLabel="Pessoa física" itemValue="F" />
+								<f:selectItem itemLabel="Pessoa jurídica" itemValue="J" />
+							</p:selectOneRadio>
+						</div>
 					</div>
-				</div>
-							
-				<br/>  	
-			  	
-			  	<!-- NOME E SOBRENOME -->
-			  	<h:panelGrid columns="2">
-			  		<p:inputText id="txtNome" class="form-control" maxlength="50" size="32" value="#{clienteBack.cliente.cli_nome}" required="false" placeholder="Nome"/>
-			  		
-			  		<p:inputText id="txtSobrenome" class="form-control" maxlength="50" size="32" value="#{clienteBack.cliente.cli_sobrenome}" required="false" placeholder="Sobrenome"/>
-			  	</h:panelGrid>
-			  	
-			  	<!-- CPF e RG -->
-			  	<h:panelGrid columns="2">
-			  		<p:inputText id="txtCpf" maxlength="50" size="30" value="#{clienteBack.cliente.cli_cpf}" required="false" placeholder="CPF"/>
-			  		
-			  		<p:inputText id="txtRg" maxlength="50" size="30" value="#{clienteBack.cliente.cli_rg}" required="false" placeholder="RG"/>
-			  	</h:panelGrid>
-			  	
-	
-				
-	
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-					<div class="col-sm-10">
-						
-					</div>
-				</div>
-		
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-					<div class="col-sm-10">
-						
-					</div>
-				</div>
-				
-				<div class="form-group row">
-					<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword" placeholder="Password"/>
-					</div>
-				</div>
-	
 
-				
+					<br />
 
-					<!-- LAYOUT DA TELA DE CADASTRO -->					
+					<!-- NOME E SOBRENOME -->
+					<h:panelGrid columns="2">
+
+						<p:inputText id="txtNome" class="form-control" maxlength="50"
+							style="width: 100%;" value="#{clienteBack.cliente.cli_nome}"
+							required="false" placeholder="Nome" />
+						<p:inputText id="txtSobrenome" class="form-control" maxlength="50"
+							style="width: 50%;" value="#{clienteBack.cliente.cli_sobrenome}"
+							required="false" placeholder="Sobrenome" />
+					</h:panelGrid>
+
+					<!-- CPF e RG -->
+					<h:panelGrid columns="2">
+						<p:inputText id="txtCpf" maxlength="50" size="34"
+							value="#{clienteBack.cliente.cli_cpf}" required="false"
+							placeholder="CPF" />
+
+						<p:inputText id="txtRg" maxlength="50" size="34"
+							value="#{clienteBack.cliente.cli_rg}" required="false"
+							placeholder="RG" />
+					</h:panelGrid>
+
+					<h:panelGrid columns="1">
+						<p:inputText id="txtEmpresa" maxlength="50" size="30"
+							value="#{clienteBack.cliente.cli_empresa}" required="false"
+							placeholder="Empresa" />
+					</h:panelGrid>
 
 
-						
-								
-							<!-- CAMPOS DE CADASTRO  -->							
-							
 
-							
-								
-							<p:inputText id="txtEmpresa" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_empresa}" required="false" placeholder="Empresa"/>
-								
-							<p:inputText id="txtRazaoSocial" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_razaosocial}" required="false" placeholder="Razão social"/>
-								
-							
-								
-							
-								
-							<p:inputText id="txtCnpj" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_cnpj}" required="false" placeholder="CNPJ"/>
-								
-							<p:inputText id="txtEmail" maxlength="50" size="30"
-								value="#{clienteBack.cliente.cli_email}" required="false" placeholder="E-mail"/>
-								
-							<p:outputLabel value="Data nasc." for="DataNasc" />							
-							<p:calendar id="DataNasc" value="#{clienteBack.cliente.cli_dtnasc}">
-					            <p:ajax event="dateSelect" listener="#{clienteBack.cliente.cli_dtnasc}" update="" />
-					        </p:calendar>
-		
-							<h:form>		
-						        <p:selectOneButton value="#{clienteBack.cliente.cli_status}">
-						            <f:selectItem itemLabel="Ativada" itemValue="Ativada" />
-						            <f:selectItem itemLabel="Desativada" itemValue="Desativada" />
-						        </p:selectOneButton>
-							</h:form>
-					        
 
-					<!-- FECHA LAYOUT DA TELA DE CADASTRO -->
+
+
+
+					<p:inputText id="txtRazaoSocial" maxlength="50" size="30"
+						value="#{clienteBack.cliente.cli_razaosocial}" required="false"
+						placeholder="Razão social" />
+
+
+
+
+
+					<p:inputText id="txtCnpj" maxlength="50" size="30"
+						value="#{clienteBack.cliente.cli_cnpj}" required="false"
+						placeholder="CNPJ" />
+
+					<p:inputText id="txtEmail" maxlength="50" size="30"
+						value="#{clienteBack.cliente.cli_email}" required="false"
+						placeholder="E-mail" />
+
+					<p:outputLabel value="Data nasc." for="DataNasc" />
+					<p:calendar id="DataNasc" value="#{clienteBack.cliente.cli_dtnasc}">
+						<p:ajax event="dateSelect"
+							listener="#{clienteBack.cliente.cli_dtnasc}" update="" />
+					</p:calendar>
+
+					<h:form>
+						<p:selectOneButton value="#{clienteBack.cliente.cli_status}">
+							<f:selectItem itemLabel="Ativada" itemValue="Ativada" />
+							<f:selectItem itemLabel="Desativada" itemValue="Desativada" />
+						</p:selectOneButton>
+					</h:form>
+
+
 				</h:panelGrid>
+
 
 
 				<h:panelGrid columns="2" style="float: right;">
@@ -194,7 +183,7 @@
 
 					<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();"
 						style="background: red; color: #fff; border: none;" />
-						
+
 				</h:panelGrid>
 
 			</h:form>
@@ -204,7 +193,6 @@
 
 
 
-</ui:define>
+	</ui:define>
 </ui:composition>
 
-	
