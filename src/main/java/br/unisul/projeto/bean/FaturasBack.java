@@ -165,11 +165,6 @@ public class FaturasBack implements Serializable {
 				dao.salvar(f);
 			} 
 			
-			if(f.getFat_status().equalsIgnoreCase("Pago")) {
-				checaPago(true);
-			} else {
-				checaPago(false);
-			}
 
 			Messages.addGlobalInfo("Fatura PAGA com sucesso");
 
@@ -188,9 +183,10 @@ public class FaturasBack implements Serializable {
 	// @PostConstruct
 
 
-	public Boolean checaPago(Boolean desativado) {
+	public Boolean checaPago(Faturas fatura) {
 		
-		return desativado;
+		return fatura.getFat_status().equalsIgnoreCase("Pago");
+		//return desativado;
 		
 	}
 
