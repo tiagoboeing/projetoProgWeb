@@ -32,8 +32,27 @@
 						filterBy="#{cliente.cli_nome} #{cliente.cli_sobrenome}">
 						<h:outputText value="#{cliente.cli_nome} #{cliente.cli_sobrenome}" />
 					</p:column>
+					
+					<p:column headerText="Telefone"
+						sortBy="#{cliente.cli_telefone}"
+						filterBy="#{cliente.cli_telefone}">
+						<h:outputText value="#{cliente.cli_telefone}" />
+					</p:column>
+					
+					<p:column headerText="E-mail"
+						sortBy="#{cliente.cli_email}"
+						filterBy="#{cliente.cli_email}">
+						<h:outputText value="#{cliente.cli_email}" />
+					</p:column>
+					
+					<p:column headerText="Cidade"
+						sortBy="#{cliente.cli_cidade}"
+						filterBy="#{cliente.cli_cidade}">
+						<h:outputText value="#{cliente.cli_cidade}" />
+					</p:column>
+					
 
-
+					<!-- 
 					<p:column headerText="Empresa"
 						sortBy="#{cliente.cli_empresa} #{cliente.cli_razaosocial}"
 						filterBy="#{cliente.cli_empresa} #{cliente.cli_razaosocial}">
@@ -45,8 +64,8 @@
 					<p:column headerText="Status" filterBy="#{cliente.cli_status}">
 						<h:outputText value="#{cliente.cli_status}" />
 					</p:column>
-
-
+					 -->
+			
 					<p:column headerText="Opções" width="130">
 
 						<!-- EDITAR -->
@@ -93,7 +112,7 @@
 			<h:form id="formCadastro">
 
 				<h:panelGrid id="pnlCad">
-
+					<!-- 
 					<div class="form-group row">
 						<div class="col-sm-10">
 							<p:selectOneRadio id="tipoConta"
@@ -103,7 +122,8 @@
 							</p:selectOneRadio>
 						</div>
 					</div>
-
+					 -->
+					 
 					<br />
 
 					<!-- NOME E SOBRENOME -->
@@ -117,7 +137,21 @@
 							required="false" placeholder="Sobrenome" />
 					</h:panelGrid>
 
+					<p:inputText id="txtTelefone" maxlength="50" size="30"
+						value="#{clienteBack.cliente.cli_telefone}" required="false"
+						placeholder="Telefone" />
+					
+					<p:inputText id="txtEmail" maxlength="50" size="30"
+						value="#{clienteBack.cliente.cli_email}" required="false"
+						placeholder="E-mail" />	
+						
+					<p:inputText id="txtCidade" maxlength="50" size="30"
+						value="#{clienteBack.cliente.cli_cidade}" required="false"
+						placeholder="Cidade" />		
+						
+						
 					<!-- CPF e RG -->
+					<!-- 
 					<h:panelGrid columns="2">
 						<p:inputText id="txtCpf" maxlength="50" size="34"
 							value="#{clienteBack.cliente.cli_cpf}" required="false"
@@ -134,33 +168,20 @@
 							placeholder="Empresa" />
 					</h:panelGrid>
 
-
-
-
-
-
-
 					<p:inputText id="txtRazaoSocial" maxlength="50" size="30"
 						value="#{clienteBack.cliente.cli_razaosocial}" required="false"
 						placeholder="Razão social" />
 
-
-
-
-
 					<p:inputText id="txtCnpj" maxlength="50" size="30"
 						value="#{clienteBack.cliente.cli_cnpj}" required="false"
 						placeholder="CNPJ" />
-
-					<p:inputText id="txtEmail" maxlength="50" size="30"
-						value="#{clienteBack.cliente.cli_email}" required="false"
-						placeholder="E-mail" />
 
 					<p:outputLabel value="Data nasc." for="DataNasc" />
 					<p:calendar id="DataNasc" value="#{clienteBack.cliente.cli_dtnasc}">
 						<p:ajax event="dateSelect"
 							listener="#{clienteBack.cliente.cli_dtnasc}" update="" />
 					</p:calendar>
+					
 
 					<h:form>
 						<p:selectOneButton value="#{clienteBack.cliente.cli_status}">
@@ -168,6 +189,8 @@
 							<f:selectItem itemLabel="Desativada" itemValue="Desativada" />
 						</p:selectOneButton>
 					</h:form>
+					
+					-->
 
 
 				</h:panelGrid>
