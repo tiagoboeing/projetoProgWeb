@@ -13,9 +13,15 @@
 - A utilização será apenas localhost e por um único usuário, sendo assim é necessário acessar a tabela **usuario** e cadastrar o registro esperado para realizar login.
 
 ### Clonar repositório para teste
-- O nome do projeto é o mesmo do repositório (projetoProgWeb)
-- Clone o repositório no workspace do Eclipse. Importe o projeto na IDE e realize os testes. (Se preferir faça download do .zip diretamente no Github e importe manualmente)
+- O nome do projeto é o mesmo do repositório (projetoProgWeb).
+- Clone o repositório no workspace do Eclipse. Importe o projeto na IDE e realize os testes. (Se preferir faça download do .zip diretamente no Github e importe manualmente).
+- O banco de dados está disponível remotamente, porém na Unisul há momentos em que o mesmo não acessa devido a questões de firewall.
+- Verificar o atributo **validate**; **create** no arquivo <a href="https://github.com/tiagoboeing/projetoProgWeb/blob/master/src/main/resources/hibernate.cfg.xml">hibernate.cfg</a>
 
 ### Upload de imagem do sistema
 - O upload só funcionará se for configurado o caminho/pasta para que upload seja realizado. Evitando a necessidade de atualizar o projeto no Eclipse manualmente, escolhemos um caminho local no **desktop** do sistema.
 - A alteração deve ser realizada no arquivo <a href="https://github.com/tiagoboeing/projetoProgWeb/blob/master/src/main/java/br/unisul/projeto/bean/SistemaBack.java">SistemaBack.java</a>.
+
+# Dúvidas?
+- Tiago Boeing: (48) 99168-0027 | contato@tiagoboeing.com.br | tiagoboeing11@gmail.com
+- Leonardo May: (48) 99941-9284 | leojcmay@gmail.com
