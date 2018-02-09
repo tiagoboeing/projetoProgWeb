@@ -2,6 +2,7 @@
 📖 Open-source  📦 Java Web, XHTML e CSS 🔧 Trabalho desenvolvido ao longo do semestre na disciplina
 
 ## Finalidade
+- Nano sistema financeiro que oferece cadastro de clientes e controle de faturas para cada cliente. A quitação de uma fatura parcial gera uma nova com o valor restante a ser pago e configurações atualizadas.
 - Administração básica do crediário da loja familiar de um dos membros do projeto: @leonardojcmay
 - A loja apenas fornece a opção de crediário aos clientes confiáveis e que possuem histórica de boas relações com a marca.
 - O controle é realizado de forma básica, o sistema é vital apenas para um histórico de pagamentos/gastos pelos clientes cadastrados.
