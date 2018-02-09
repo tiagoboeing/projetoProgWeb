@@ -6,6 +6,7 @@
 - Administração básica do crediário da loja familiar de um dos membros do projeto: @leonardojcmay
 - A loja apenas fornece a opção de crediário aos clientes confiáveis e que possuem histórica de boas relações com a marca.
 - O controle é realizado de forma básica, o sistema é vital apenas para um histórico de pagamentos/gastos pelos clientes cadastrados.
+- Aceita personalização da interface de forma básica (alteração de logomarca).
 
 ## Leia-me antes de usar
 - Clone SEMPRE a última versão do branch "master", para garantir que a versão do código esteja atualizada corretamente.
