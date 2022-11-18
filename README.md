@@ -28,5 +28,5 @@
 >O arquivo a ser rodado é o <a href="https://github.com/tiagoboeing/projetoProgWeb/blob/master/src/main/webapp/root/principal.xhtml">**principal.xhtml**</a> ou <a href="https://github.com/tiagoboeing/projetoProgWeb/blob/master/src/main/webapp/root/login.xhtml">**login.xhtml**</a>
 
 # Dúvidas?
-- Tiago Boeing: (48) 99168-0027 | contato@tiagoboeing.com.br | tiagoboeing11@gmail.com
-- Leonardo May: (48) 99941-9284 | leojcmay@gmail.com
+- Tiago Boeing: contato@tiagoboeing.com.br | tiagoboeing11@gmail.com
+- Leonardo May: leojcmay@gmail.com
